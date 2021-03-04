@@ -1,6 +1,18 @@
-# flask-api
-An example flask rest API server.
+# Game API Server
 
-To build production, type `make prod`.
+## Setup instructions
 
-To create the env for a new developer, run `make dev_env`.
+You need to have `make` installed. In general, things a developer will want to
+do (besides writing code!) will correspond to a `make` target.
+
+- To create the env for a new developer, run `make dev_env`.
+- To run the server locally, use `source/local.sh`
+- To build production, type `make prod`.
+
+## Requirements
+
+The requirements for our Game API server are:
+
+- The user can sign up.
+- The user can create a new game.
+
