@@ -1,6 +1,19 @@
-# SETemplate
+# TakeOff
 
-A template repo for Software Engineering projects at NYU Tandon.
+## Team Members (Github usernames):
+* Jamie Mei (Meij03)
+* Amadou Oury Diallo (fdnthecoders)
+* Weixiong Zhu (itsweiwei)
+* Momin Qadri (mominqadri)
+
+## Description:
+An application that will help small bussiness market their store and find investors. Profiles of the small bussinesses can be created by any user and be edited by any user if the bussiness themselves do not take control of the profile. The goal of this product is to be able to help customers locate 
+small bussiness that are not on bigger platforms such as Yelp. Locals from specific areas can contribute to the bussiness profile and add reviews to it. 
+
+## Basic functionalities 
+* Must be able to access and edit bussiness profiles from a user standpoint
+* Must be able to locate the store on a map
+
 
 In order to build production, in the top level directory, run:
 
