@@ -5,8 +5,13 @@ Gradually, we will fill in actual calls to our datastore.
 """
 
 
-def fetch_pets():
+def fetch_games():
     """
-    A function to return all pets in the data store.
+    A function to return all games in the database.
+    Soon we probably need a flag to get just active games.
     """
-    return {"tigers": 2, "lions": 3, "zebras": 1}
+    return {
+            "Warcraft": {"descr": "A game like World of Warcraft."},
+            "Empires": {"descr": "A game like Age of Empires."},
+            "Simmy": {"descr": "A game like Sims."},
+           }

@@ -5,7 +5,7 @@ The endpoint called `endpoints` will return all available endpoints.
 
 from flask import Flask
 from flask_restx import Resource, Api
-from db import fetch_pets
+from db import fetch_games
 
 app = Flask(__name__)
 api = Api(app)
@@ -39,13 +39,27 @@ class Endpoints(Resource):
         return {"Available endpoints": endpoints}
 
 
-@api.route('/pets')
-class Pets(Resource):
+@api.route('/games')
+class Games(Resource):
     """
-    This class supports fetching a list of all pets.
+    This class supports fetching a list of all games.
     """
     def get(self):
         """
-        This method returns all pets.
+        This method returns all games.
         """
-        return fetch_pets()
+        return fetch_games()
+
+
+@api.route('/create_game')
+class CreateGame(Resource):
+    """
+    This class allows the user to create a new game.
+    We will be passing in some sort of game object as a
+    parameter. Details unknown at present.
+    """
+    def post(self):
+        """
+        This method returns all games.
+        """
+        return "Game created."

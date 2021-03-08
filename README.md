@@ -15,4 +15,6 @@ The requirements for our Game API server are:
 
 - The user can sign up.
 - The user can create a new game.
+- The user can list all games.
+- The user can join a game.
 
