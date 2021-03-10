@@ -31,6 +31,9 @@ The requirements for our Game API server are:
 Most of the above requirements will map directly to an API endpoint.
 We will use flask restx for our API server, as we have experience with it.
 
+We want the options available to the user stored on the server.
+This way, menus etc. live in a single place.
+
 Some design issues to be resolved.
 
 - How do we specify a game?

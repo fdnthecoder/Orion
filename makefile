@@ -1,4 +1,4 @@
-LINTER = flake8
+YAML_LINT = yamllint
 SRC_DIR = source
 REQ_DIR = requirements
 
@@ -6,17 +6,15 @@ FORCE:
 
 prod: tests github
 
+tests: test_yaml
+	cd source; make tests
+
+test_yaml:
+	$(YAML_LINT) .travis.yml
+
 github: FORCE
 	- git commit -a
 	git push origin master
-
-tests: lint unit
-
-unit: FORCE
-	python3 -m unittest source.db
-
-lint: FORCE
-	$(LINTER) $(SRC_DIR)/*.py
 
 dev_env: FORCE
 	pip install -r $(REQ_DIR)/requirements-dev.txt

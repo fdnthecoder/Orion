@@ -1,0 +1,14 @@
+---
+language: python
+
+python:
+    - '3.8'
+
+install:
+    - make dev_env
+
+env:
+    PYTHONPATH=$(pwd)
+
+script:
+    - make tests

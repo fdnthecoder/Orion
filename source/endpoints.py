@@ -10,6 +10,9 @@ from db import fetch_games
 app = Flask(__name__)
 api = Api(app)
 
+HELLO = 'hello'
+AVAILABLE = 'Available endpoints:'
+
 
 @api.route('/hello')
 class HelloWorld(Resource):
@@ -22,10 +25,10 @@ class HelloWorld(Resource):
         A trivial endpoint to see if the server is running.
         It just answers with "hello world."
         """
-        return {'hello': 'world'}
+        return {HELLO: 'world'}
 
 
-@api.route('/endpoints')
+@api.route('/endpoints/list')
 class Endpoints(Resource):
     """
     This class will serve as live, fetchable documentation of what endpoints
@@ -35,11 +38,11 @@ class Endpoints(Resource):
         """
         The `get()` method will return a list of available endpoints.
         """
-        endpoints = sorted(rule.rule for rule in api.app.url_map.iter_rules())
-        return {"Available endpoints": endpoints}
+        epts = sorted(rule.rule for rule in api.app.url_map.iter_rules())
+        return {AVAILABLE: epts}
 
 
-@api.route('/games')
+@api.route('/games/list')
 class Games(Resource):
     """
     This class supports fetching a list of all games.
@@ -56,7 +59,7 @@ user = api.model("user", {
 })
 
 
-@api.route('/join_game/<int:game_id>')
+@api.route('/games/join/<int:game_id>')
 class JoinGame(Resource):
     """
     This endpoint allows a user to join an existing game.
@@ -66,7 +69,7 @@ class JoinGame(Resource):
         return "Game joined."
 
 
-@api.route('/create_game')
+@api.route('/games/create')
 class CreateGame(Resource):
     """
     This class allows the user to create a new game.
