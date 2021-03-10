@@ -4,7 +4,7 @@ The endpoint called `endpoints` will return all available endpoints.
 """
 
 from flask import Flask
-from flask_restx import Resource, Api
+from flask_restx import Resource, Api, fields
 from db import fetch_games
 
 app = Flask(__name__)
@@ -49,6 +49,21 @@ class Games(Resource):
         This method returns all games.
         """
         return fetch_games()
+
+
+user = api.model("user", {
+    "name": fields.String("User name.")
+})
+
+
+@api.route('/join_game/<int:game_id>')
+class JoinGame(Resource):
+    """
+    This endpoint allows a user to join an existing game.
+    """
+    @api.expect(user)
+    def put(self, game_id):
+        return "Game joined."
 
 
 @api.route('/create_game')
