@@ -6,7 +6,7 @@ FORCE:
 
 prod: tests github
 
-tests: test_yaml
+tests: FORCE
 	cd $(API_DIR); make tests
 
 test_yaml:
