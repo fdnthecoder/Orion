@@ -1,13 +1,13 @@
 YAML_LINT = yamllint
-SRC_DIR = source
-REQ_DIR = requirements
+API_DIR = source
+REQ_DIR = .
 
 FORCE:
 
 prod: tests github
 
 tests: test_yaml
-	cd source; make tests
+	cd $(API_DIR); make tests
 
 test_yaml:
 	$(YAML_LINT) .travis.yml
@@ -20,4 +20,4 @@ dev_env: FORCE
 	pip install -r $(REQ_DIR)/requirements-dev.txt
 
 docs: FORCE
-	cd source; make docs
+	cd $(API_DIR); make docs
