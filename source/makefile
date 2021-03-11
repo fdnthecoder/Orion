@@ -12,7 +12,7 @@ docs: $(DOCFILES)
 tests: lint unit
 
 unit: FORCE
-	python3 -m unittest tests.test_endpoints
+	nosetests --exe --verbose --with-coverage --cover-package=source
 
 lint: FORCE
 	$(LINTER) *.py

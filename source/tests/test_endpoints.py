@@ -6,8 +6,8 @@ This runs tests for endpoints.py.
 from unittest import TestCase
 from flask_restx import Resource
 
-from endpoints import HelloWorld, HELLO, AVAILABLE, Endpoints
-from endpoints import Games
+from source.endpoints import HelloWorld, HELLO, AVAILABLE, Endpoints
+from source.endpoints import Games
 
 
 class TestEndpoints(TestCase):

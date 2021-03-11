@@ -5,7 +5,7 @@ The endpoint called `endpoints` will return all available endpoints.
 
 from flask import Flask
 from flask_restx import Resource, Api, fields
-from db import fetch_games
+from source.db import fetch_games
 
 app = Flask(__name__)
 api = Api(app)
