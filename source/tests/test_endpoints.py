@@ -17,7 +17,8 @@ class TestEndpoints(TestCase):
         """
         hello_ep = HelloWorld(Resource)
         ret = hello_ep.get()
-        self.assertIn(HELLO, ret)
+        self.assertIn("Goodbye", ret)
+        # self.assertIn(HELLO, ret)
 
     def test_endpoints(self):
         """
