@@ -24,6 +24,7 @@ dev_env: FORCE
 heroku:
 	# install heroku:
 	curl https://cli-assets.heroku.com/install.sh | sh
+	heroku apps:create sd-game-api
 	heroku login
 	# set up heroku app as remote for this repo
 	heroku git:remote -a sd-game-api
