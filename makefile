@@ -24,12 +24,12 @@ dev_env: FORCE
 heroku:
 	# install heroku:
 	curl https://cli-assets.heroku.com/install.sh | sh
-	heroku apps:create sd-game-api
 	heroku login
+	heroku apps:create sd-game-api
 	# set up heroku app as remote for this repo
 	heroku git:remote -a sd-game-api
-	heroku ci:config:set PYTHONPATH="/app"
-	heroku ci:config:set GAME_HOME="/app"
+	heroku config:set PYTHONPATH="/app"
+	heroku config:set GAME_HOME="/app"
 	echo "web: gunicorn source.endpoints:app" > Procfile
 	# enter deploy code in .travis.yml
 
