@@ -2,8 +2,9 @@
     "Title": "Main Menu",
     "Default": 0,
     "Choices": {
-        "0": {"func": "go_on", "text": "List all games"},
-        "1": {"func": "exit", "text": "Exit"}
+        "1": {"url": "/games/list", "method": "get", "text": "List all games"},
+        "2": {"url": "/games/create", "method": "get", "text": "Create a game"},
+        "0": {"func": "exit", "text": "Exit"}
     }
 }
 
