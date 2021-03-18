@@ -3,8 +3,11 @@ This is the file containing all of the endpoints for our flask app.
 The endpoint called `endpoints` will return all available endpoints.
 """
 
+import json
 from flask import Flask
 from flask_restx import Resource, Api, fields
+from werkzeug.exceptions import NotFound
+
 from source.db import fetch_games
 
 app = Flask(__name__)
@@ -13,6 +16,19 @@ api = Api(app)
 HELLO = 'hello'
 AVAILABLE = 'Available endpoints:'
 MAIN_MENU = "Main Menu"
+MAIN_MENU_ROUTE = '/menus/main'
+
+DATA_DIR = '../data'
+MAIN_MENU_JSON = DATA_DIR + '/' + 'main_menu.json'
+
+
+def get_main_menu():
+    print(f"Going to open {MAIN_MENU_JSON}")
+    try:
+        with open(MAIN_MENU_JSON) as file:
+            return json.loads(file.read())
+    except FileNotFoundError:
+        return None
 
 
 @api.route('/hello')
@@ -43,17 +59,22 @@ class Endpoints(Resource):
         return {AVAILABLE: epts}
 
 
-@api.route('/menus/main')
+@api.route(MAIN_MENU_ROUTE)
 class MainMenu(Resource):
     """
     This class will serve as live, fetchable documentation of what endpoints
     are available in the system.
     """
+    @api.response(200, 'Success')
+    @api.response(404, 'Not Found')
     def get(self):
         """
-        The `get()` method will return a list of available endpoints.
+        The `get()` method will return the main menu.
         """
-        return {MAIN_MENU: "This will contain the menu."}
+        main_menu = get_main_menu()
+        if main_menu is None:
+            raise (NotFound("Main menu not found."))
+        return main_menu
 
 
 @api.route('/games/list')
