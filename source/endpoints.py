@@ -3,6 +3,7 @@ This is the file containing all of the endpoints for our flask app.
 The endpoint called `endpoints` will return all available endpoints.
 """
 
+import os
 import json
 from flask import Flask
 from flask_restx import Resource, Api, fields
@@ -19,7 +20,10 @@ AVAILABLE = 'Available endpoints:'
 MAIN_MENU = "Main Menu"
 MAIN_MENU_ROUTE = '/menus/main'
 
-DATA_DIR = '../data'
+HEROKU_HOME = '/app'
+GAME_HOME = os.getenv("GAME_HOME", HEROKU_HOME)
+
+DATA_DIR = f'{GAME_HOME}/data'
 MAIN_MENU_JSON = DATA_DIR + '/' + 'main_menu.json'
 
 
