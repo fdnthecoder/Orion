@@ -7,6 +7,7 @@ import json
 from flask import Flask
 from flask_restx import Resource, Api, fields
 from werkzeug.exceptions import NotFound
+from text_app.text_menu.text_menu.text_menu import TYPE, DATA
 
 from source.db import fetch_games
 
@@ -86,7 +87,7 @@ class Games(Resource):
         """
         This method returns all games.
         """
-        return fetch_games()
+        return {TYPE: DATA, DATA: fetch_games()}
 
 
 user = api.model("user", {
@@ -101,6 +102,9 @@ class JoinGame(Resource):
     """
     @api.expect(user)
     def put(self, game_id):
+        """
+        Allow `user` to join `game_id` as a player.
+        """
         return "Game joined."
 
 

@@ -1,4 +1,5 @@
 {
+    "Type": "menu",
     "Title": "Main Menu",
     "Default": 0,
     "Choices": {
