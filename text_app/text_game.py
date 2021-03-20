@@ -26,7 +26,7 @@ def menu(session, api_server, route):
             result = session.get(f"{api_server}{opt[URL]}")
             data = result.json()
             if data[TYPE] == DATA:
-                print(data_repr(data))
+                print(f"\n{data_repr(data)}\n")
     return SUCCESS
 
 

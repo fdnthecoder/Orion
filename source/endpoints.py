@@ -8,7 +8,7 @@ import json
 from flask import Flask
 from flask_restx import Resource, Api, fields
 from werkzeug.exceptions import NotFound
-from text_app.text_menu.text_menu.text_menu import TYPE, DATA
+import text_app.text_menu.text_menu.text_menu as tm
 
 from source.db import fetch_games
 
@@ -91,7 +91,9 @@ class Games(Resource):
         """
         This method returns all games.
         """
-        return {TYPE: DATA, DATA: fetch_games()}
+        return {tm.TYPE: tm.DATA,
+                tm.TITLE: "Available games",
+                tm.DATA: fetch_games()}
 
 
 user = api.model("user", {
