@@ -7,11 +7,11 @@
 * Momin Qadri (mominqadri)
 
 ## Description:
-Our product is intented to help small business market their store and find investors. Profiles of the small businesses can be created by any user and be edited by any user if the business themselves do not take control of the profile. The goal of this product is to be able to help customers locate 
+Our product is intended to help small business market their store and find investors. Profiles of the small businesses can be created by any user and be edited by any user if the business themselves do not take control of the profile. The goal of this product is to be able to help customers locate 
 small business that are not on bigger platforms such as Yelp. Locals from specific areas can contribute to the business profile and add reviews to it. Investors can also look through these profiles and contact the owner if they would like to invest it in. 
 
 ## Basic functionalities 
-* Must be able to access and edit bussiness profiles from a user standpoint
+* Must be able to access and edit business profiles from a user standpoint
 * Must be able to locate the store on a map
 
 
@@ -21,6 +21,21 @@ In order to build production, in the top level directory, run:
 
 
 ## Requirements
+
+Users should be able to:
+
+1. Create new profiles for businesses
+2. Edit existing profiles of unclaimed businesses
+3. Search through businesses
+4. Review businesses
+
+API should be able to:
+
+1. List business
+2. Add business
+3. Delete a business
+4. Comment on a business
+5. Filter through business/location
 
 The requirements for a design project include:
 
