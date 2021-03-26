@@ -22,6 +22,14 @@ In order to build production, in the top level directory, run:
 
 ## Requirements
 
+API should be able to:
+
+1. List business
+2. Add business
+3. Delete a business
+4. Comment on a business
+5. Filter through business/location
+
 The requirements for a design project include:
 
 1. Everything under source code control
@@ -31,6 +39,7 @@ The requirements for a design project include:
 1. Automated code checking in place.
 1. Test code coverage measured.
 1. Automated deployment to production
+
 
 ## Design
 
@@ -45,5 +54,4 @@ standard tools.
 1. Use `flake8`
 1. Use `coverage`
 1. Use `Travis`
-
 
