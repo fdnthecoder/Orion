@@ -10,15 +10,20 @@
 Our product is intended to help small business market their store and find investors. Profiles of the small businesses can be created by any user and be edited by any user if the business themselves do not take control of the profile. The goal of this product is to be able to help customers locate 
 small business that are not on bigger platforms such as Yelp. Locals from specific areas can contribute to the business profile and add reviews to it. Investors can also look through these profiles and contact the owner if they would like to invest it in. 
 
+Setup
+---------------------------
+To configure your system for development, first install Python 3 and git and
+then run `make dev_env` (on Linux).
+Follow the outputted instructions for setting your environment variables.
 ## Basic functionalities 
 * Must be able to access and edit business profiles from a user standpoint
 * Must be able to locate the store on a map
-
 
 In order to build production, in the top level directory, run:
 
 `make prod`
 
+In order to run tests before run 'make tests'
 
 ## Requirements
 
