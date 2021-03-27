@@ -19,10 +19,9 @@ then run
 In order to build production, in the top level directory, run:
 
 `make prod`
-
+Follow the outputted instructions for setting your environment variables.
 In order to run tests before run 
 `make tests`
-Follow the outputted instructions for setting your environment variables.
 ## Basic functionalities 
 * Must be able to access and edit business profiles from a user standpoint
 * Must be able to locate the store on a map
