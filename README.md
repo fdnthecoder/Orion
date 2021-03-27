@@ -2,7 +2,7 @@
 
 ## Team Members (Github usernames):
 * Jamie Mei (Meij03)
-* Amadou Oury Diallo (fdnthecoders)
+* Amadou Oury Diallo (fdnthecoder)
 * Weixiong Zhu (itsweiwei)
 * Momin Qadri (mominqadri)
 
