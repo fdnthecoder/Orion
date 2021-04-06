@@ -1,1 +1,3 @@
-The requirements for running our api and stuff will go in here
+gunicorn
+flask
+flask-restx
