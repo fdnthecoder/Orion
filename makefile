@@ -1,3 +1,6 @@
+YAML_LINT = yamllint
+API_DIR = API
+TEXT_DIR = textgame
 PYLINT = flake8
 REQ_DIR = .
 

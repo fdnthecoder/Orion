@@ -4,14 +4,14 @@ The endpoint called `endpoints` will return all available endpoints.
 """
 
 from flask import Flask, render_template
-#from flask_restx import Resource, Api, fields
+from flask_restx import Resource, Api, fields
 from werkzeug.exceptions import NotFound
 # import textapp.text_app as ta
 
 # import API.db as db
 
 app = Flask(__name__)
-#api = Api(app)
+api = Api(app)
 
 HELLO = 'hello'
 AVAILABLE = 'Available endpoints:'
@@ -21,14 +21,14 @@ MENU_URL = "MenuURL"
 GAMES_MENU_ROUTE = '/menus/games'
 CREATE_GAME_MENU_ROUTE = '/menus/create_game'
 
-
+'''
 @app.route('/hello')
 def HelloWorld():
     return "Hello World"
-
-
 '''
-class HelloWorld():
+
+@api.route('/hello')
+class HelloWorld(Resource):
     """
     The purpose of the HelloWorld class is to have a simple test to see if the
     app is working at all.
@@ -39,6 +39,6 @@ class HelloWorld():
         It just answers with "hello world."
         """
         return {HELLO: 'world'}
-'''
+
 
 
