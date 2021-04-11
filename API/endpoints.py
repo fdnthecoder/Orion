@@ -18,8 +18,8 @@ AVAILABLE = 'Available endpoints:'
 MAIN_MENU = "Main Menu"
 MAIN_MENU_ROUTE = '/menus/main'
 MENU_URL = "MenuURL"
-GAMES_MENU_ROUTE = '/menus/games'
-CREATE_GAME_MENU_ROUTE = '/menus/create_game'
+BUSINESS_MENU_ROUTE = '/menus/business'
+CREATE_BUSINESS_MENU_ROUTE = '/menus/create_business'
 
 
 @api.route('/hello')
@@ -34,3 +34,8 @@ class HelloWorld(Resource):
         It just answers with "hello world."
         """
         return {HELLO: 'world'}
+
+@api.route('/business/create')
+class business_create(Resource):
+    def get(self):
+        return {BUSSINESS: 'CREATE'}
