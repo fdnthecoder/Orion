@@ -38,4 +38,4 @@ class HelloWorld(Resource):
 @api.route('/business/create')
 class business_create(Resource):
     def get(self):
-        return {BUSSINESS: 'CREATE'}
+        return {BUSINESS_MENU_ROUTE: 'CREATE'}
