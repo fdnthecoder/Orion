@@ -39,3 +39,13 @@ class HelloWorld(Resource):
 class business_create(Resource):
     def get(self):
         return {BUSINESS_MENU_ROUTE: 'CREATE'}
+
+@api.route('/business/list')
+class list_business(Resource):
+    def get(self):
+        return {BUSINESS_MENU_ROUTE: 'LIST'}
+
+@api.route('/business/delete')
+class delete_business(Resource):
+    def get(self):
+        return {BUSINESS_MENU_ROUTE: 'DELETE'}
