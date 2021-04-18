@@ -20,6 +20,7 @@ MAIN_MENU_ROUTE = '/menus/main'
 MENU_URL = "MenuURL"
 BUSINESS_MENU_ROUTE = '/menus/business'
 CREATE_BUSINESS_MENU_ROUTE = '/menus/create_business'
+USER_MENU_ROUTE = '/menus/user'
 
 
 @api.route('/hello')
@@ -49,3 +50,20 @@ class list_business(Resource):
 class delete_business(Resource):
     def get(self):
         return {BUSINESS_MENU_ROUTE: 'DELETE'}
+
+@api.route('/user/create')
+class create_user(Resource):
+    def get(self):
+        return {USER_MENU_ROUTE: 'CREATE'}
+
+@api.route('/user/login')
+class user_login(Resource):
+    def get(self):
+        return {USER_MENU_ROUTE: 'LOGIN'}
+
+@api.route('/user/logout')
+class user_logout(Resource):
+    def get(self):
+        return {USER_MENU_ROUTE: 'LOGOUT'}
+
+# comment and review, different routes?
