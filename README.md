@@ -1,17 +1,18 @@
-# TakeOff
+# Orion
 
 ## Team Members (Github usernames):
-* Jamie Mei (Meij03)
-* Amadou Oury Diallo (fdnthecoder)
-* Weixiong Zhu (itsweiwei)
-* Momin Qadri (mominqadri)
+
+- Jamie Mei (Meij03)
+- Amadou Oury Diallo (fdnthecoder)
+- Weixiong Zhu (itsweiwei)
+- Momin Qadri (mominqadri)
 
 ## Description:
-Our product is intended to help small business market their store and find investors. Profiles of the small businesses can be created by any user and be edited by any user if the business themselves do not take control of the profile. The goal of this product is to be able to help customers locate 
-small business that are not on bigger platforms such as Yelp. Locals from specific areas can contribute to the business profile and add reviews to it. Investors can also look through these profiles and contact the owner if they would like to invest it in. 
 
-Setup
----------------------------
+Current job searching for college students have been very unorganized and students have struggled in organizing the number of companies they applied for and their applications. Our project Orion is intended to help college students in organizing their internship/job application searching opportunies. As well as creating a community space for fellow students to post internship or event opportunities.
+
+## Setup
+
 To configure your system for development, first install Python 3 and git and
 then run
 `make dev_env` (on Linux).
@@ -20,21 +21,29 @@ In order to build production, in the top level directory, run:
 
 `make prod`
 Follow the outputted instructions for setting your environment variables.
-In order to run tests before run 
+In order to run tests before run
 `make tests`
-## Basic functionalities 
-* Must be able to access and edit business profiles from a user standpoint
-* Must be able to locate the store on a map
 
+## Basic functionalities
+
+- Must be able to access and edit business profiles from a user standpoint
+- Must be able to locate the store on a map
 
 ## Requirements
 
 Users should be able to:
 
-1. Create new profiles for businesses
-2. Edit existing profiles of unclaimed businesses
-3. Search through businesses
-4. Review businesses
+1. Add/Move applications on our Kanban Board
+   - Add Applications to Tracker
+      - Manually adding application information on to card
+      - Adding through job post clicks
+   - Movie/Update Application
+      - Manual move between different sections
+   - Delete (or Archives) Applications
+      - Delete or move archives
+1. Post applications on community board/home
+   - Post applications
+   - Connection between post to kanban board - in a default section(wishlist/bucketlist)
 
 API should be able to:
 
@@ -56,7 +65,7 @@ The requirements for a design project include:
 
 ## Design
 
-The following is a standard toolkit for this course. You *may* use other tools,
+The following is a standard toolkit for this course. You _may_ use other tools,
 but our ability to help you master them will not be as high as with the
 standard tools.
 
@@ -67,5 +76,3 @@ standard tools.
 1. Use `flake8`
 1. Use `coverage`
 1. Use `Travis`
-
-
