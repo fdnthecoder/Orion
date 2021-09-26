@@ -15,11 +15,12 @@ api = Api(app)
 
 HELLO = 'hello'
 AVAILABLE = 'Available endpoints:'
-MAIN_MENU = "Main Menu"
-MAIN_MENU_ROUTE = '/menus/main'
+HOME_MENU = "HOME Menu"
+HOME_MENU_ROUTE = '/menus/HOME'
 MENU_URL = "MenuURL"
-BUSINESS_MENU_ROUTE = '/menus/business'
-CREATE_BUSINESS_MENU_ROUTE = '/menus/create_business'
+APPLICATIONS = "applications"
+APPLICATION_MENU_ROUTE = '/menus/APPLICATION'
+CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
 
 
@@ -34,32 +35,52 @@ class HelloWorld(Resource):
         A trivial endpoint to see if the server is running.
         It just answers with "hello world."
         """
-        return {HELLO: 'world'}
+        return {HELLO: 'Hello World'}
 
-@api.route('/business/create')
-class business_create(Resource):
-    def get(self):
-        return {BUSINESS_MENU_ROUTE: 'CREATE'}
 
-@api.route('/business/list')
-class list_business(Resource):
+@api.route('/APPLICATION/add')
+class add_application(Resource):
+    # add application to a kandban board from a post
     def get(self):
-        return {BUSINESS_MENU_ROUTE: 'LIST'}
+        return {APPLICATION_MENU_ROUTE: 'ADD'}
 
-@api.route('/business/delete')
-class delete_business(Resource):
+
+@api.route('/APPLICATION/create')
+class create_application(Resource):
+    # create applications.
     def get(self):
-        return {BUSINESS_MENU_ROUTE: 'DELETE'}
+        return {APPLICATION_MENU_ROUTE: 'CREATE'}
+
+
+class post_application(Resource):
+    # post an application on the board
+    def get(self):
+        return {APPLICATIONS: "application create"}
+
+
+@api.route('/APPLICATION/list')
+class list_applications(Resource):
+    def get(self):
+        return {APPLICATION_MENU_ROUTE: '[Google, Facebook, Yahoo]'}
+
+
+@api.route('/APPLICATION/delete')
+class delete_application(Resource):
+    def get(self):
+        return {APPLICATION_MENU_ROUTE: 'DELETE'}
+
 
 @api.route('/user/create')
 class create_user(Resource):
     def get(self):
         return {USER_MENU_ROUTE: 'CREATE'}
 
+
 @api.route('/user/login')
 class user_login(Resource):
     def get(self):
         return {USER_MENU_ROUTE: 'LOGIN'}
+
 
 @api.route('/user/logout')
 class user_logout(Resource):
