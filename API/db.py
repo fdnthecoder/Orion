@@ -59,7 +59,7 @@ def populate_db(collection):
 
 def get_database():
     # Provide the mongodb atlas url to connect python to mongodb using pymongo
-    CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test"
+    CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
 
     # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
     from pymongo import MongoClient
