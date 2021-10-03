@@ -1,36 +1,23 @@
-import logo from './logo.png';
+import React, {Component} from 'react';
 import './App.css';
+import {Switch, Route} from 'react-router-dom';
+import Header from './Components/Header/Header';
+import Login from './Pages/Login/Login';
 //import React, { useEffect, useState } from 'react';
 //import axios from 'axios'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>
-          Orion
-        </h2>
-		<form className="App-login">
-		  <div>
-		  Username: 
-		  <input type="text" defaultValue="Username" name="uname"/>
-		  </div>
-		  <div>
-		  Password: 
-		  <input type="text" name="pword"/>
-		  </div>
-		  <input type="submit" value="Submit"/>
-		</form>
-		<p id="test-div">
-			This is where we will test our connection to the API
-		</p>
-		<button onclick="">
-		  Change text!
-		</button>
-      </header>
-    </div>
-  );
+class App extends Component{
+	render(){
+		return (
+			<div className="App">
+				<Header />
+				<Switch>
+					<Route path='/login' render={() =><h1>Hello Gang</h1>}/>
+					<Route path='/' component={Login}/>
+				</Switch>
+			</div>
+		);
+	}
 }
 
 export default App;
