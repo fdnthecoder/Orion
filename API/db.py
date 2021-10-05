@@ -3,21 +3,17 @@ This file will manage interactions with our data store.
 At first, it will just contain stubs that return fake data.
 Gradually, we will fill in actual calls to our datastore.
 """
-# import os
+import os
 import json
 from pymongo import MongoClient
-# HEROKU_HOME = '/app'
-# GAME_HOME = os.getenv("GAME_HOME", HEROKU_HOME)
+HEROKU_HOME = '/app'
+ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
 
-# NEED TO MAKE EDITS TO THE SPECIFIC json based on which json file we create
-# DATA_DIR = f'{GAME_HOME}/data'
-# MAIN_MENU_JSON = DATA_DIR + '/' + 'main_menu.json'
-# GAMES_MENU_JSON = DATA_DIR + '/' + 'games_menu.json'
-# CREATE_GAME_JSON = DATA_DIR + '/' + 'create_game.json'
-# CREATE_GAME_MENU_JSON = DATA_DIR + '/' + 'create_game_menu.json'
-# GAMES_JSON = DATA_DIR + '/' + 'games.json'
+DATA_DIR = f'{ORION_HOME}/data'
+ORION_APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
 
-# NAME = 'name'
+# turn this to true when databse connection is successfull.
+DATABASE_CONNECTED = False
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
 CONNECTION_STRING = """mongodb+srv://mainuser:crepe2021@cluster0.
@@ -42,7 +38,7 @@ def load_from_file(file):
         with open(file) as file:
             return json.loads(file.read())
     except FileNotFoundError:
-        return None
+        return "Could not open json file"
 
 
 def populate_db(collection):
@@ -62,6 +58,8 @@ def populate_db(collection):
 
 def get_database():
     # Create a connection using MongoClient.
+    if not DATABASE_CONNECTED:
+        return load_from_file(ORION_APPLICATIONS_FILE)
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
     coll = db['test']
@@ -69,8 +67,3 @@ def get_database():
     for elem in coll.find({}):
         print(elem)
     return db
-
-
-# This is added so that many files can reuse the function get_database()
-if __name__ == "__main__":
-    dbname = get_database()

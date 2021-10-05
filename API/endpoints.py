@@ -3,6 +3,7 @@ This is the file containing all of the endpoints for our flask app.
 The endpoint called `endpoints` will return all available endpoints.
 """
 
+from API import db
 from flask import Flask
 from flask_restx import Resource, Api  # fields
 # from werkzeug.exceptions import NotFound
@@ -61,7 +62,7 @@ class post_application(Resource):
 @api.route('/APPLICATION/list')
 class list_applications(Resource):
     def get(self):
-        return {APPLICATION_MENU_ROUTE: '[Google, Facebook, Yahoo]'}
+        return db.get_database()
 
 
 @api.route('/APPLICATION/delete')
