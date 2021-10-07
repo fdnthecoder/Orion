@@ -10,7 +10,7 @@
 ## Description:
 
 Current job searching for college students have been very unorganized and students have struggled in organizing the number of companies they applied for and their applications. Our project Orion is intended to help college students in organizing their internship/job application searching opportunies. As well as creating a community space for fellow students to post internship or event opportunities.
-
+ 
 ## Setup
 
 To configure your system for development, first install Python 3 and git and
