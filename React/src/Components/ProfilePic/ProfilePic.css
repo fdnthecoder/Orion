@@ -1,0 +1,9 @@
+.profile-pic{
+    background-image: '../../Assets/defaultProfilePic.png';
+}
+
+username {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50 px;
+    color:black;
+}

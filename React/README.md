@@ -1,6 +1,11 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## To run app on your system, you must install react-scripts manually 
+
+### `npm install react-scripts --save` 
+
+This will create a node_modules folder, which contains all the dependency
 
 ## Available Scripts
 

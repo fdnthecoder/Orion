@@ -19,6 +19,9 @@ const Header = () => {
                 <div>
                     <NavLink to='/login' className='navLink'>Login</NavLink>
                 </div>
+                <div>
+                    <NavLink to='/profile' className='navLink'>Profile</NavLink>
+                </div>
             </div>
         </nav>
     );
