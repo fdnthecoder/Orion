@@ -12,9 +12,9 @@ env:
     - PYTHONPATH=/home/travis/build/fdnthecoder/Orion
     - GAME_HOME=/home/travis/build/fdnthecoder/Orion
 install: 
-  - "make dev_env"
+  - make dev_env
 language: python
 python: 
   - "3.7"
 script: 
-  - "make tests"
+  - make tests
