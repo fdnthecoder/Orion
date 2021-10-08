@@ -4,7 +4,6 @@ import {Switch, Route} from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
-import Background from "./Components/Background/Background"
 //import React, { useEffect, useState } from 'react';
 //import axios from 'axios'
 

@@ -1,7 +1,16 @@
-profile-pic-block {
-  background-color: lightpink;
+.profile-body{
+  width: 60px;
+  height: 100px;
+  background-color:blanchedalmond;
+}
+.background {
+  text-align: center;
+  background-image: url("../../Assets/background.jpg");
 }
 
-profile-check {
-    background-color: blue;
+.profile-photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: blanchedalmond;
 }

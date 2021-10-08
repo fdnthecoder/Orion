@@ -1,7 +1,8 @@
 .login-body{
+    overflow-y: scroll;
     height: 100%;
-    margin: 0;
-    background-image: '../../Assets/background.jpg';
+    margin: 0% auto;
+    background-color: blanchedalmond;
 }
 
 .login-div{
@@ -15,6 +16,7 @@
    border-radius: 5px;
    padding: 10px;
    margin-top: 10vh;
+   background-color:dodgerblue;
 }
 
 input{

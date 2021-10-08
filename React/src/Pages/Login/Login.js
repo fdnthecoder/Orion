@@ -8,7 +8,7 @@ class Login extends React.Component{
             <div className="login-body">
                 <div className="login-div">
                     <div>
-                        <img src={logoURL}/>
+                        <img src={logoURL} alt = "logo"/>
                     </div>
                     <div>
                         <form>

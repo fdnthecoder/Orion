@@ -1,4 +1,5 @@
 .background-image{
-    background-image: '../../Assets/background.jpg';
+    background-color: blanchedalmond;
+    z-index: -1;
 }
   
