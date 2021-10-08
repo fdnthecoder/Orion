@@ -1,20 +1,23 @@
---- 
-deploy: 
-  api_key: 
-    secure: Xbq9swL9E9noY5KXbFPXTDA2Ufvs1RXUZOndOuMyRGlDyGnWuQZCn2v8vX4JpsTZN84cKDtFdThpWTMoVlaXwSibo/8tVk35kQu9WW29uvPdAzo3oZpWjoUQgyAPi0FRlseB3IixMgP+Efu/EEsdr/y8HISKPIe00nrFolLCeKsc6sTIxaLxhxEHYGY4KEwEW8dyIe0i8/Dlfj+ycRP4rNKy26CRxebsU4srx0LCSrXFEvC7J4dY2AtBR9dP0gFkKN8tYiRGv9/vFzM0YNb5BcauAvIHe2g+jlSYzTAJ8ro9UOgxslE+xSbo9aZLZFSXTRUusCW2MerfnwVyQZU/PXexxVZZeFkZO0BImBIBJAo47CRC7w8LORnWicNeshUIBfEQ7JwkbVUue72XGq83GuDKAu/IQ4dyxw0Pz8//a+qOYVi3po2ZP86ni8PopOXauRAQYJMYJeT58JklFNnAp6FTpZesucpO1kWz1ffhXZFqGb6ZWKK5BjSzHWjDl4kq3DIGznpnn0U5/uEsmnTQ+agSC4CJj0cQVv5v+OnlC10kreXvQ62c5Fupy76YiMyX5amR1jjraz0bLA6JiYceRiQlPg5HmApPe56tfb59QL4KbKhs5ugHED+izv078HExEjZNGwsZGdPeik23ItYIBqJhYwHOECs/IdIz9p02UMo=
-  matrix: 
-    - 
-      api_key: $HEROKU_API_KEY
-      app: orion-api
-      provider: heroku
-env: 
-  global: 
-    - PYTHONPATH=/home/travis/build/fdnthecoder/Orion
-    - GAME_HOME=/home/travis/build/fdnthecoder/Orion
-install: 
-  - make dev_env
 language: python
-python: 
-  - "3.7"
-script: 
-  - make tests
+python:
+- '3.7'
+install:
+- make dev_env
+env:
+  global:
+  - PYTHONPATH=/home/travis/build/fdnthecoder/Orion
+  - GAME_HOME=/home/travis/build/fdnthecoder/Orion
+script:
+- make tests
+deploy:
+    - provider: heroku
+      api_key: $HEROKU_API_KEY
+      app: sd-orion-api
+after_success:
+  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh success $DISCORD_WEBHOOK_URL
+after_failure:
+  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh failure $DISCORD_WEBHOOK_URL
