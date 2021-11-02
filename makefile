@@ -36,6 +36,6 @@ heroku-run:
 	heroku git:remote -a orion-crepe
 	heroku config:set PYTHONPATH="/app"
 	heroku config:set ORION_HOME="/app"
-	echo "web: gunicorn --chdir API endpoints:api" > Procfile
+	echo "web: gunicorn --chdir API endpoints:app" > Procfile
 
 
