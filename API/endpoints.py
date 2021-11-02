@@ -25,7 +25,7 @@ APPLICATION_MENU_ROUTE = '/menus/APPLICATION'
 CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
 
-@api.route('/')
+@app.route('/index')
 class index(Resource):
     """Test whether the connection works"""
     def get():
