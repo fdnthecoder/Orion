@@ -10,7 +10,7 @@ tests: FORCE
 	$(PYLINT) *.py
 	nosetests --exe --with-coverage --verbose --cover-package=Orion
 dev_env: FORCE
-	pip3 install -r requirements-dev.txt
+	pip3 install -r requirements-dev.txtk
 prod: tests
 	git commit -a
 	git push origin main

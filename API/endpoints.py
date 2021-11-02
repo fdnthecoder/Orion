@@ -11,7 +11,7 @@ from flask_restx import Resource, Api  # fields
 
 # import API.db as db
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./React/build')
 api = Api(app)
 
 HELLO = 'hello'
@@ -89,3 +89,5 @@ class user_logout(Resource):
         return {USER_MENU_ROUTE: 'LOGOUT'}
 
 # comment and review, different routes?
+if __name__ == '__main__':
+    flask_app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))

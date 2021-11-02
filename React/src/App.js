@@ -4,32 +4,23 @@ import {Switch, Route} from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
-import { useEffect, useState } from 'react';
-import axios from 'axios'
+//import { useEffect, useState } from 'react';
+//import axios from 'axios'
 
-function App (){
-	const [getMessage, setGetMessage] = useState({})
-	useEffect(()=>{
-		axios.get('http://orion-crepe.herokuapp.com/').then(response => {
-		  console.log("SUCCESS", response)
-		  setGetMessage(response)
-		}).catch(error => {
-		  console.log(error)
-		})
-
-	}, [])	
-
-	return (
-		<div className="App">
-			<Header />
-
-			<Switch>
-				<Route path='/login' component={Login}/>
-				<Route path='/profile' component={Profile}/>
-				<Route exact path='/' render={() => <h1>Hello Gang!</h1>}/>
-			</Switch>
-		</div>
-	);
+class App extends Component{
+	render(){
+		return (
+			<div className="App">
+				<Header />
+	
+				<Switch>
+					<Route path='/login' component={Login}/>
+					<Route path='/profile' component={Profile}/>
+					<Route exact path='/' render={() => <h1>Hello Gang!</h1>}/>
+				</Switch>
+			</div>
+		);
+	}
 }
 
 //<Route path='/login' render={() =><h1>Hello Gang</h1>}/>
