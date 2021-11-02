@@ -15,6 +15,7 @@ app = Flask(__name__, static_folder='./React/build')
 api = Api(app)
 
 HELLO = 'hello'
+INDEX_ROUTE = 'index.html'
 AVAILABLE = 'Available endpoints:'
 HOME_MENU = "HOME Menu"
 HOME_MENU_ROUTE = '/menus/HOME'
@@ -38,6 +39,11 @@ class HelloWorld(Resource):
         """
         return {HELLO: 'Hello World'}
 
+@api.route('/')
+class index_check(Resource):
+    """Purpose of checking whether heroku connection worked"""
+    def get(self):
+        return app.send_static_file('index.html')
 
 @api.route('/APPLICATION/add')
 class add_application(Resource):

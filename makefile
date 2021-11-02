@@ -29,3 +29,13 @@ heroku:
 	heroku config:set ORION_HOME="/app"
 	echo "web: gunicorn source.endpoints:app" > Procfile
 	# enter deploy code in .travis.yml
+
+heroku-run:
+	heroku login
+	git init
+	heroku git:remote -a orion-crepe
+	heroku config:set PYTHONPATH="/app"
+	heroku config:set ORION_HOME="/app"
+	echo "web: gunicorn server:app" > Procfile
+
+
