@@ -11,7 +11,7 @@ from flask_restx import Resource, Api  # fields
 
 # import API.db as db
 
-app = Flask(__name__, static_folder='./React/build')
+app = Flask(__name__, static_folder='../React/build', static_url_path="/")
 api = Api(app)
 
 HELLO = 'hello'
@@ -25,6 +25,14 @@ APPLICATION_MENU_ROUTE = '/menus/APPLICATION'
 CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
 
+@api.route('/')
+class index_check(Resource):
+    """Purpose of checking whether heroku connection worked"""
+    def get(self):
+        return api.send_static_file('index.html')
+@app.errorhandler(404)
+def not_found(e):
+    return app.send_static_file('index.html')
 
 @api.route('/hello')
 class HelloWorld(Resource):
@@ -39,11 +47,6 @@ class HelloWorld(Resource):
         """
         return {HELLO: 'Hello World'}
 
-@api.route('/')
-class index_check(Resource):
-    """Purpose of checking whether heroku connection worked"""
-    def get(self):
-        return api.send_static_file('index.html')
 
 @api.route('/APPLICATION/add')
 class add_application(Resource):
