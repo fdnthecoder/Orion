@@ -26,13 +26,11 @@ CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
 
 @api.route('/')
-def index_check():
-    """Purpose of checking whether heroku connection worked"""
-    return api.send_static_file('index.html')
-    
-@app.errorhandler(404)
-def not_found(e):
-    return app.send_static_file('index.html')
+class index(Resource):
+    """Test whether the connection works"""
+    def get():
+        return app.send_static_file('index.html')
+
 
 @api.route('/hello')
 class HelloWorld(Resource):
