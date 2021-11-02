@@ -43,7 +43,7 @@ class HelloWorld(Resource):
 class index_check(Resource):
     """Purpose of checking whether heroku connection worked"""
     def get(self):
-        return app.send_static_file('index.html')
+        return api.send_static_file('index.html')
 
 @api.route('/APPLICATION/add')
 class add_application(Resource):
