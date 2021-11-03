@@ -1,37 +1,34 @@
 import React from 'react';
 import './App.css';
 import {Switch, Route} from 'react-router-dom';
-//import Header from './Components/Header/Header';
+import Header from './Components/Header/Header';
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
+import {Test} from "./Components/Test/Test"
 import { useEffect, useState } from 'react';
-import axios from 'axios'
+//import axios from 'axios'
 
 function App() {
-	const [getMessage, setGetMessage] = useState({})
-  
-	useEffect(()=>{
-	  axios.get('https://react-flask-tutorial.herokuapp.com/flask/hello').then(response => {
-		console.log("SUCCESS", response)
-		setGetMessage(response)
-	  }).catch(error => {
-		console.log(error)
-	  })
-	}, [])
+	const [state, setState] = useState({})
+
+	useEffect(() => {
+		fetch("/hello").then(response => {
+			if (response.status == 200){
+				return response.json()
+			}
+		}).then(data => setState(data))
+		.then(error => console.log(error))
+	},[])
+
 	return (
 		<div className="App">
-			<header className="App-header">
-				<p>React + Flask Tutorial</p>
-				<div>{getMessage.status === 200 ? 
-				<h3>{getMessage.data.message}</h3>
-				:
-  				<h3>LOADING</h3>}</div>
-			</header>
 
+			<Test prop={state}/>
+			<Header />
 			<Switch>
 				<Route path='/login' component={Login}/>
 				<Route path='/profile' component={Profile}/>
-				<Route exact path='/' render={() => <h1>Hello Gang!</h1>}/>
+				<Route exact path='/' render={() => <h1><Test prop={state}/></h1>}/>
 			</Switch>
 		</div>
 	);

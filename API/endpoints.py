@@ -25,11 +25,11 @@ APPLICATION_MENU_ROUTE = '/menus/APPLICATION'
 CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
 
-@api.route('/index')
+@api.route('/')
 class index(Resource):
     """Test whether the connection works"""
     def get():
-        return app.send_static_file('index.html')
+        return app.send_static_file(app.static_folder, 'index.html')
 
 
 @api.route('/hello')
