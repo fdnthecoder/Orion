@@ -1,0 +1,9 @@
+{
+  "name": "orion",
+  "version": "0.1.0",
+  "proxy": "https://orion-crepe.herokuapp.com/",
+  "private": true,
+  "engines": {
+    "node": "14.x"
+  }
+}
