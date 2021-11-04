@@ -11,8 +11,8 @@ from flask_restx import Resource, Api  # fields
 
 # import API.db as db
 
-app = Flask(__name__, static_folder='../React/build', static_url_path="/")
-api = Api(app)
+api = Flask(__name__, static_folder='../React/build', static_url_path="/")
+#api = Api(app)
 
 HELLO = 'hello'
 INDEX_ROUTE = 'index.html'
@@ -26,10 +26,8 @@ CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
 
 @api.route('/')
-class index(Resource):
-    """Test whether the connection works"""
-    def get():
-        return app.send_static_file(app.static_folder, 'index.html')
+def get():
+    return app.send_static_file(api.static_folder, 'index.html')
 
 
 @api.route('/hello')
