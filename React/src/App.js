@@ -28,7 +28,7 @@ function App() {
 			<Switch>
 				<Route path='/login' component={Login}/>
 				<Route path='/profile' component={Profile}/>
-				<Route exact path='/' render={() => <h1><Test prop={state}/></h1>}/>
+				<Route exact path='/hello' render={() => <h1><Test prop={state}/></h1>}/>
 			</Switch>
 		</div>
 	);
