@@ -4,15 +4,15 @@ The endpoint called `endpoints` will return all available endpoints.
 """
 
 from API import db
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_restx import Resource, Api  # fields
 # from werkzeug.exceptions import NotFound
 # import textapp.text_app as ta
 
 # import API.db as db
 
-api = Flask(__name__, static_folder='../React/build', static_url_path="/")
-#api = Api(app)
+app = Flask(__name__, static_folder='../React/build', static_url_path="")
+api = Api(app)
 
 HELLO = 'hello'
 INDEX_ROUTE = 'index.html'
@@ -25,9 +25,11 @@ APPLICATION_MENU_ROUTE = '/menus/APPLICATION'
 CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
 
-@api.route('/')
-def get():
-    return app.send_static_file(api.static_folder, 'index.html')
+@api.route('/frontend/index')
+class index(Resource):
+    """Test whether the connection works"""
+    def get(self):
+        return send_from_directory(app.static_folder, 'index.html')
 
 
 @api.route('/hello')

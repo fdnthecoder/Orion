@@ -6,13 +6,13 @@ import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
 import {Test} from "./Components/Test/Test"
 import { useEffect, useState } from 'react';
-//import axios from 'axios'
+import axios from 'axios'
 
 function App() {
 	const [state, setState] = useState({})
 
 	useEffect(() => {
-		fetch("/hello").then(response => {
+		axios.get('https://orion-crepe.herokuapp.com/frontend/index').then(response => {
 			if (response.status == 200){
 				return response.json()
 			}
@@ -28,7 +28,7 @@ function App() {
 			<Switch>
 				<Route path='/login' component={Login}/>
 				<Route path='/profile' component={Profile}/>
-				<Route exact path='/hello' render={() => <h1><Test prop={state}/></h1>}/>
+				<Route exact path='/' render={() => <h1><Test prop={state}/></h1>}/>
 			</Switch>
 		</div>
 	);
