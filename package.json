@@ -1,0 +1,14 @@
+{
+  "name": "orion",
+  "version": "0.1.0",
+  "proxy": "https://orion-crepe.herokuapp.com/",
+  "private": true,
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-prebuild": "cd React && npm install && npm run build",
+    "start-web": "node index.js"
+  }
+}
