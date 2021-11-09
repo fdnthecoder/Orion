@@ -1,5 +1,6 @@
 gunicorn
 flask
 flask-restx
+flask-cors
 pymongo
 pymongo[srv]
