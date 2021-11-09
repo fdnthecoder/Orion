@@ -5,3 +5,4 @@ coverage
 flask
 travis
 gunicorn
+flask-cors
