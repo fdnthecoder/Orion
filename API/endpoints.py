@@ -12,7 +12,7 @@ from flask_restx import Resource, Api  # fields
 
 # import API.db as db
 
-app = Flask(__name__, static_folder='../React/build', static_url_path="")
+app = Flask(__name__)
 cor = CORS(app)
 
 HELLO = 'hello'
