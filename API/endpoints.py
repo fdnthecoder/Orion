@@ -12,10 +12,12 @@ from flask_restx import Resource, Api  # fields
 
 # import API.db as db
 
-app = Flask(__name__)
-cor = CORS(app)
+app = Flask(__name__, static_folder='../React/build', static_url_path="")
+api = Api(app)
+CORS(app)
 
 HELLO = 'hello'
+INDEX_ROUTE = 'index.html'
 AVAILABLE = 'Available endpoints:'
 HOME_MENU = "HOME Menu"
 HOME_MENU_ROUTE = '/menus/HOME'
@@ -25,43 +27,72 @@ APPLICATION_MENU_ROUTE = '/menus/APPLICATION'
 CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
 
+@api.route('/frontend/index')
+class index(Resource):
+    """Test whether the connection works"""
+    def get(self):
+        return send_from_directory(app.static_folder, 'index.html')
 
 
-@app.route('/hello')
-def hello():
+@api.route('/hello')
+class HelloWorld(Resource):
     """
-    A trivial endpoint to see if the server is running.
-    It just answers with "hello world."
+    The purpose of the HelloWorld class is to have a simple test to see if the
+    app is working at all.
     """
-    return {HELLO: 'Hello World'}
+    def get(self):
+        """
+        A trivial endpoint to see if the server is running.
+        It just answers with "hello world."
+        """
+        return {HELLO: 'Hello World'}
 
 
-@app.route('/APPLICATION/create')
-def createApp():
-    return {APPLICATION_MENU_ROUTE: 'CREATE'}
+@api.route('/APPLICATION/add')
+class add_application(Resource):
+    # add application to a kandban board from a post
+    def get(self):
+        return {APPLICATION_MENU_ROUTE: 'ADD'}
 
 
-
-@app.route('/APPLICATION/list')
-def appList():
-    return db.get_database()
-
-
-@app.route('/APPLICATION/delete')
-def deleteApp():
-    return {APPLICATION_MENU_ROUTE: 'DELETE'}
+@api.route('/APPLICATION/create')
+class create_application(Resource):
+    # create applications.
+    def get(self):
+        return {APPLICATION_MENU_ROUTE: 'CREATE'}
 
 
-@app.route('/user/create')
-def createUser():
-    return {USER_MENU_ROUTE: 'CREATE'}
+class post_application(Resource):
+    # post an application on the board
+    def get(self):
+        return {APPLICATIONS: "application create"}
 
 
-@app.route('/user/login')
-def login():
-    return {USER_MENU_ROUTE: 'LOGIN'}
+@api.route('/APPLICATION/list')
+class list_applications(Resource):
+    def get(self):
+        return db.get_database()
 
 
-@app.route('/user/logout')
-def logout():
-    return {USER_MENU_ROUTE: 'LOGOUT'}
+@api.route('/APPLICATION/delete')
+class delete_application(Resource):
+    def get(self):
+        return {APPLICATION_MENU_ROUTE: 'DELETE'}
+
+
+@api.route('/user/create')
+class create_user(Resource):
+    def get(self):
+        return {USER_MENU_ROUTE: 'CREATE'}
+
+
+@api.route('/user/login')
+class user_login(Resource):
+    def get(self):
+        return {USER_MENU_ROUTE: 'LOGIN'}
+
+
+@api.route('/user/logout')
+class user_logout(Resource):
+    def get(self):
+        return {USER_MENU_ROUTE: 'LOGOUT'}
