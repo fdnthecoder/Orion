@@ -10,8 +10,9 @@ HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
 
 DATA_DIR = f'{ORION_HOME}/data'
-ORION_APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
-
+APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
+PROFILES_FILE = f"{DATA_DIR}/profiles.json"
+POSTS_FILE = f"{DATA_DIR}/posts.json"
 # turn this to true when databse connection is successfull.
 DATABASE_CONNECTED = False
 
@@ -56,10 +57,37 @@ def populate_db(collection):
     })
 
 
+def get_profiles():
+    """
+    Get the list of profiles.
+    """
+    if not DATABASE_CONNECTED:
+        return load_from_file(PROFILES_FILE)
+    # get profiles from data base here momin using get_database()
+
+
+def get_posts():
+    """
+    Get the list of posts.
+    """
+    if not DATABASE_CONNECTED:
+        return load_from_file(POSTS_FILE)
+    # get posts from database here momin using get_database()
+
+
+def get_applications():
+    """
+    Get the list of applications.
+    """
+    if not DATABASE_CONNECTED:
+        return load_from_file(APPLICATIONS_FILE)
+        # get applications from database here momin using get_database()
+
+
 def get_database():
     # Create a connection using MongoClient.
     if not DATABASE_CONNECTED:
-        return load_from_file(ORION_APPLICATIONS_FILE)
+        return load_from_file(APPLICATIONS_FILE)
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
     coll = db['test']

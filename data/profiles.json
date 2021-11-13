@@ -1,18 +1,19 @@
-{
+{"dialldb":
     {
         "name": "Amadou Diallo",
         "useername":"dialldb",
         "email": "aodemail@nyu.edu",
         "password" :"hashedp_assword",
-        "applications": {"id": "applied", "id":"done"},
+        "applications": {"id": "applied", "status":"done"},
         "profilePicture":"href_link"
     },
+    "qadriid":
     {
         "name": "Momin Qadri",
         "useername":"qadriid",
         "email": "qadri@nyu.edu",
         "password" :"hashedp_assword",
-        "applications": {"id": "applied", "id":"done"},
+        "applications": {"id": "applied", "status":"done"},
         "profilePicture":"href_link"
-    },
+    }
 }

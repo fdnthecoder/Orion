@@ -7,10 +7,6 @@ from API import db
 from flask import Flask, send_from_directory
 from flask_cors import CORS
 from flask_restx import Resource, Api  # fields
-# from werkzeug.exceptions import NotFound
-# import textapp.text_app as ta
-
-# import API.db as db
 
 app = Flask(__name__, static_folder='../React/build', static_url_path="")
 api = Api(app)
@@ -117,7 +113,7 @@ class create_user(Resource):
 
     def post(self):
         """
-        Create a user profile, give given information.
+        Sign up.
         """
         return {USER_MENU_ROUTE: 'CREATE'}
 
