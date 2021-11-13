@@ -19,19 +19,21 @@ def get_application(app_id):
     Get an application.
     """
     applications = db.get_applications()
-    for app in applications:
-        if app[APP_ID] == app_id:
-            return app
+    for app, value in applications.items():
+        if value[APP_ID] == app_id:
+            return value
+    # raise error
 
 
 def get_post(post_id):
     """
     Get an a post.
     """
-    applications = db.get_applications()
-    for post in applications:
-        if post[POST_ID] == post_id:
-            return post
+    applications = db.get_posts()
+    for post, value in applications.items():
+        if value[POST_ID] == post_id:
+            return value
+    # raise error
 
 
 def main():
