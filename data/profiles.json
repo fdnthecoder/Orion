@@ -1,6 +1,5 @@
 {"dialldb":
-    {
-        "name": "Amadou Diallo",
+    {   "name": "Amadou Diallo",
         "useername":"dialldb",
         "email": "aodemail@nyu.edu",
         "password" :"hashedp_assword",
@@ -8,9 +7,8 @@
         "profilePicture":"href_link"
     },
     "qadriid":
-    {
-        "name": "Momin Qadri",
-        "useername":"qadriid",
+    {   "name": "Momin Qadri",
+        "username":"qadriid",
         "email": "qadri@nyu.edu",
         "password" :"hashedp_assword",
         "applications": {"id": "applied", "status":"done"},
