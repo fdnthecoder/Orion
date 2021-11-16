@@ -7,6 +7,12 @@
 - Weixiong Zhu (itsweiwei)
 - Momin Qadri (mominqadri)
 
+## Backend website
+
+To see all APIs, please refer to this link
+
+`https://orion-crepe.herokuapp.com/`
+
 ## Description:
 
 Current job searching for college students have been very unorganized and students have struggled in organizing the number of companies they applied for and their applications. Our project Orion is intended to help college students in organizing their internship/job application searching opportunies. As well as creating a community space for fellow students to post internship or event opportunities.
@@ -25,9 +31,8 @@ In order to run tests before run
 `make tests`
 
 ## Basic functionalities
-
-- Must be able to access and edit business profiles from a user standpoint
-- Must be able to locate the store on a map
+- Must be able to access user profile
+- Must be able to add job posting and add job posting to appication tracker
 
 ## Requirements
 
@@ -47,11 +52,14 @@ Users should be able to:
 
 API should be able to:
 
-1. List business
-2. Add business
-3. Delete a business
-4. Comment on a business
-5. Filter through business/location
+1. User login
+   1. User logout
+   1. User sign up
+2. Add Job Posting
+   1. Delete Job posting
+   1. Edit Job posting
+3. Add Job posting to application tracker (Kanban board)
+   1. Updates location of card based of user movement of card
 
 The requirements for a design project include:
 
