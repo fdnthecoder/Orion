@@ -8,26 +8,22 @@ import json
 from pymongo import MongoClient
 HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
+CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test"
 
 DATA_DIR = f'{ORION_HOME}/data'
 APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
 PROFILES_FILE = f"{DATA_DIR}/profiles.json"
 POSTS_FILE = f"{DATA_DIR}/posts.json"
 # turn this to true when databse connection is successfull.
-DATABASE_CONNECTED = False
+DATABASE_CONNECTED = True
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
-CONNECTION_STRING = """mongodb+srv://mainuser:crepe2021@cluster0.
-sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-
-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"""
-
 
 def save_to_file(file, json_data):
     """Save data into a json file."""
     print(f"Going to save to {file}")
     with open(file, 'w') as f:
         f.write(json.dumps(json_data))
-
 
 def load_from_file(file):
     """
@@ -41,21 +37,32 @@ def load_from_file(file):
     except FileNotFoundError:
         return "Could not open json file"
 
-
-def populate_db(collection):
-    # populating db with mock data
+def populate_profiles(collection):
+    # populating profiles with mock data (FUNCTION SOLELY FOR TESTING)
     collection.insert_one({
-        "id": 1,
         "username": input("Enter a username: "),
         "password": input("Enter a password: "),
-        "group": [
-            "Amadou",
-            "Jamie",
-            "Wei",
-            "Momin"
-        ]
+        "email": input("Enter an email: ")
     })
 
+def populate_posts(collection):
+    # populating posts with mock data (FUNCTION SOLELY FOR TESTING)
+    collection.insert_one({
+        "company": "Google",
+        "level": "Internship",
+        "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply",
+        "title": "Software Engineering Intern, Bachelor's, Summer 2022"
+    })
+    
+def get_collection(coll_name):
+    """
+    str  -> Mongo collection object that we can read or write to
+    """
+    if not DATABASE_CONNECTED:
+        return load_from_file(PROFILES_FILE)
+    db = get_database()
+    profiles_coll = db[coll_name]
+    return profiles_coll
 
 def get_profiles():
     """
@@ -63,8 +70,11 @@ def get_profiles():
     """
     if not DATABASE_CONNECTED:
         return load_from_file(PROFILES_FILE)
+    db = get_database()
+    profiles_coll = db['profiles']
+    return profiles_coll
+    
     # get profiles from data base here momin using get_database()
-
 
 def get_posts():
     """
@@ -72,8 +82,8 @@ def get_posts():
     """
     if not DATABASE_CONNECTED:
         return load_from_file(POSTS_FILE)
-    # get posts from database here momin using get_database()
 
+    # get posts from database here momin using get_database()
 
 def get_applications():
     """
@@ -83,15 +93,14 @@ def get_applications():
         return load_from_file(APPLICATIONS_FILE)
         # get applications from database here momin using get_database()
 
-
 def get_database():
     # Create a connection using MongoClient.
     if not DATABASE_CONNECTED:
         return load_from_file(APPLICATIONS_FILE)
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
-    coll = db['test']
-    # populate_db(coll)
-    for elem in coll.find({}):
-        print(elem)
+    
     return db
+
+populate_posts(get_collection('postings'))
+populate_profiles(get_collection('profiles'))
