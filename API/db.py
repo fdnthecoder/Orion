@@ -54,15 +54,6 @@ def populate_posts(collection):
         "title": "Software Engineering Intern, Bachelor's, Summer 2022"
     })
     
-def get_collection(coll_name):
-    """
-    str  -> Mongo collection object that we can read or write to
-    """
-    if not DATABASE_CONNECTED:
-        return load_from_file(PROFILES_FILE)
-    db = get_database()
-    profiles_coll = db[coll_name]
-    return profiles_coll
 
 def get_profiles():
     """
@@ -71,8 +62,7 @@ def get_profiles():
     if not DATABASE_CONNECTED:
         return load_from_file(PROFILES_FILE)
     db = get_database()
-    profiles_coll = db['profiles']
-    return profiles_coll
+    return db['profiles']
     
     # get profiles from data base here momin using get_database()
 
@@ -82,6 +72,8 @@ def get_posts():
     """
     if not DATABASE_CONNECTED:
         return load_from_file(POSTS_FILE)
+    db = get_database() 
+    return db['profiles']
 
     # get posts from database here momin using get_database()
 
@@ -92,6 +84,8 @@ def get_applications():
     if not DATABASE_CONNECTED:
         return load_from_file(APPLICATIONS_FILE)
         # get applications from database here momin using get_database()
+    db = get_database()
+    return db['applications']
 
 def get_database():
     # Create a connection using MongoClient.
@@ -99,7 +93,6 @@ def get_database():
         return load_from_file(APPLICATIONS_FILE)
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
-    
     return db
 
 populate_posts(get_collection('postings'))
