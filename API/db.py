@@ -14,8 +14,8 @@ DATA_DIR = f'{ORION_HOME}/data'
 APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
 PROFILES_FILE = f"{DATA_DIR}/profiles.json"
 POSTS_FILE = f"{DATA_DIR}/posts.json"
-# turn this to true when databse connection is successfull.
-DATABASE_CONNECTED = True
+# turn this to true when database connection is successfull.
+DATABASE_CONNECTED = False # move to environment variable
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
 
@@ -55,25 +55,15 @@ def populate_posts(collection):
     })
     
 
-def get_profiles():
-    """
-    Get the list of profiles.
-    """
-    if not DATABASE_CONNECTED:
-        return load_from_file(PROFILES_FILE)
-    db = get_database()
-    return db['profiles']
-    
-    # get profiles from data base here momin using get_database()
-
 def get_posts():
     """
     Get the list of posts.
     """
     if not DATABASE_CONNECTED:
         return load_from_file(POSTS_FILE)
-    db = get_database() 
-    return db['profiles']
+    else:
+        db = get_database() 
+        return db['posts']
 
     # get posts from database here momin using get_database()
 
@@ -84,13 +74,12 @@ def get_applications():
     if not DATABASE_CONNECTED:
         return load_from_file(APPLICATIONS_FILE)
         # get applications from database here momin using get_database()
-    db = get_database()
-    return db['applications']
+    else:
+        db = get_database()
+        return db['applications']
 
 def get_database():
     # Create a connection using MongoClient.
-    if not DATABASE_CONNECTED:
-        return load_from_file(APPLICATIONS_FILE)
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
     return db
