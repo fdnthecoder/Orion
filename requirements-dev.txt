@@ -6,3 +6,5 @@ flask
 travis
 gunicorn
 flask-cors
+pymongo
+pymongo[srv]
