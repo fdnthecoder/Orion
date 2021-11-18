@@ -53,7 +53,18 @@ def populate_posts(collection):
         "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply",
         "title": "Software Engineering Intern, Bachelor's, Summer 2022"
     })
-    
+
+def get_profiles():
+    """
+    Get the list of posts.
+    """
+    if not DATABASE_CONNECTED:
+        return load_from_file(POSTS_FILE)
+    else:
+        db = get_database() 
+        return db['profiles']
+
+    # get posts from database here momin using get_database()
 
 def get_posts():
     """
@@ -84,5 +95,5 @@ def get_database():
     db = client['orion']
     return db
 
-populate_posts(get_collection('postings'))
-populate_profiles(get_collection('profiles'))
+#populate_posts(get_posts())
+#populate_profiles(get_profiles())
