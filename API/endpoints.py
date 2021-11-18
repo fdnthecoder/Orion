@@ -4,7 +4,7 @@ The endpoint called `endpoints` will return all available endpoints.
 """
 from http import HTTPStatus
 from API import db
-from flask import Flask, send_from_directory
+from flask import Flask, request
 from flask_cors import CORS
 from flask_restx import Resource, Api  # fields
 
@@ -14,7 +14,6 @@ DEMO_ID = 0
 CORS(app)
 
 HELLO = 'hello'
-INDEX_ROUTE = 'index.html'
 AVAILABLE = 'Available endpoints:'
 HOME_MENU = "HOME Menu"
 HOME_MENU_ROUTE = '/menus/HOME'
@@ -24,14 +23,6 @@ APPLICATION_MENU_ROUTE = '/menus/APPLICATION'
 CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
 
-
-@api.route('/frontend/index')
-class index(Resource):
-    """
-    Test whether the connection works.
-    """
-    def get(self):
-        return send_from_directory(app.static_folder, 'index.html')
 
 
 @api.route('/hello')
@@ -60,23 +51,19 @@ class Endpoints(Resource):
 
 
 @api.route('/APPLICATION')
-class board(Resource):
+class Application(Resource):
     """
     We can use this class to deal with applications.
     """
     @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
-    def post(self):
+    def get(self):
         """Create an applications"""
-        return {APPLICATION_MENU_ROUTE: 'CREATE'}
-
-    def put(self):
-        """Edit profile an application"""
-        return {APPLICATION_MENU_ROUTE: 'ADD'}
+        return {APPLICATION_MENU_ROUTE: 'GET'}
 
 
 @api.route('/BOARD')
-class applications(Resource):
+class Board(Resource):
     """
     We can use this class to deal with applications.
     """
@@ -116,7 +103,10 @@ class create_user(Resource):
         """
         Sign up.
         """
-        return {USER_MENU_ROUTE: 'CREATE'}
+        data = request.get_json()
+        username = data.get("username")
+        password =data.get("password")
+        return data
 
     def put(self):
         """
