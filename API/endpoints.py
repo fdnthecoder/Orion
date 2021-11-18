@@ -106,7 +106,8 @@ class create_user(Resource):
         data = request.get_json()
         username = data.get("username")
         password =data.get("password")
-        return data
+        print(data)
+        return {USER_MENU_ROUTE: 'CREATE'}
 
     def put(self):
         """
