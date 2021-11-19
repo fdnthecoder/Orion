@@ -111,7 +111,7 @@ class create_user(Resource):
             password: data.get("password"),
             status: 200,
         }
-        return jsonify(response)
+        return jsonify(data)
 
     def put(self):
         """
