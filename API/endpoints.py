@@ -104,13 +104,6 @@ class create_user(Resource):
         Sign up.
         """
         data = request.get_json()
-        print(data)
-        response = {
-            USER_MENU_ROUTE: 'CREATE',
-            username: data.get("username"),
-            password: data.get("password"),
-            status: 200,
-        }
         return jsonify(data)
 
     def put(self):
