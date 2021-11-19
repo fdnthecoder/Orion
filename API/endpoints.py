@@ -11,7 +11,7 @@ from flask_restx import Resource, Api  # fields
 app = Flask(__name__, static_folder='../React/build', static_url_path="")
 api = Api(app)
 DEMO_ID = 0
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 HELLO = 'hello'
 AVAILABLE = 'Available endpoints:'
