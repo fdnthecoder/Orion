@@ -4,7 +4,7 @@ The endpoint called `endpoints` will return all available endpoints.
 """
 from http import HTTPStatus
 from API import db
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_restx import Resource, Api  # fields
 
@@ -107,9 +107,11 @@ class create_user(Resource):
         print(data)
         response = {
             USER_MENU_ROUTE: 'CREATE',
-            message: data,
+            username: data.get("username"),
+            password: data.get("password"),
+            status: 200,
         }
-        return response
+        return jsonify(response)
 
     def put(self):
         """
