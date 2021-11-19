@@ -110,7 +110,7 @@ class create_user(Resource):
         return {USER_MENU_ROUTE: 'CREATE',
         username: username,
         password: password, 
-        message: "Success"
+        message: "Success",
         }
 
     def put(self):
