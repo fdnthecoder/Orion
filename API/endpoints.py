@@ -107,7 +107,11 @@ class create_user(Resource):
         username = data.get("username")
         password =data.get("password")
         print(data)
-        return {USER_MENU_ROUTE: 'CREATE'}
+        return {USER_MENU_ROUTE: 'CREATE',
+        username: username,
+        password: password, 
+        message: "Success"
+        }
 
     def put(self):
         """
