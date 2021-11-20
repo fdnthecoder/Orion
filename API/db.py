@@ -42,7 +42,17 @@ def populate_profiles(collection):
     collection.insert_one({
         "username": input("Enter a username: "),
         "password": input("Enter a password: "),
-        "email": input("Enter an email: ")
+        "email": input("Enter an email: "),
+        "applications": 
+            {
+             "appId": 1,
+             "company": "Facebook",
+             "level": "Entry Level",
+             "url": "https://www.facebookcareers.com/jobs/213402246952404/",
+             "title": "Software Engineer, University Grad",
+             "applied": True,
+             "date_applied": "6/28/21"
+            },
     })
 
 def populate_posts(collection):
@@ -72,12 +82,12 @@ def get_posts():
 
     # get posts from database here momin using get_database()
 
-def get_applications():
-    """
-    Get the list of applications.
-    """
-    db = get_database()
-    return db['applications']
+# def get_applications():
+#     """
+#     Get the list of applications.
+#     """
+#     db = get_database()
+#     return db['applications']
 
 def get_database():
     # Create a connection using MongoClient.

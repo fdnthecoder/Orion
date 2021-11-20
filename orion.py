@@ -11,18 +11,17 @@ def get_profile(username):
     Get a user profile by username.
     """
     profiles = db.get_profiles()
-    query = profiles.find_one({}, {"username": username})
+    query = profiles.find_one({"username": username})
     return query
 
 
-def get_application(app_id):
+def get_application(username, app_id):
     """
     Get an application.
     """
-    applications = db.get_applications()
-    for app, value in applications.items():
-        if value[APP_ID] == app_id:
-            return value
+    profile = get_profile(username)
+    query = profile.get("applications")
+    return query
     # raise error
 
 
@@ -39,6 +38,9 @@ def get_post(post_id):
 
 def main():
     print("Hello class!")  # check if main even runs!
+
+    d = get_application("amadou", 1)
+    print(d)
     return 0
 
 

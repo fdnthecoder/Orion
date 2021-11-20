@@ -18,7 +18,7 @@ class SengTestCase(TestCase):
 
 
     def test_get_profle(self):
-        momin = orion.get_profile("Momin")
+        momin = orion.get_profile("momin")
         self.assertIsInstance(momin,dict)
 
 
@@ -26,5 +26,7 @@ class SengTestCase(TestCase):
         self.assertIsInstance(orion.get_post(DEMO_ID), dict)
 
     def test_get_application(self):
-        self.assertIsInstance(orion.get_application(DEMO_ID), dict)
+        amadou = orion.get_profile("Amadou")
+        apps = orion.get_application(amadou, 1)
+        self.assertIsInstance(apps, dict)
     
