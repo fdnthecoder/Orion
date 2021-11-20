@@ -11,7 +11,8 @@ def get_profile(username):
     Get a user profile by username.
     """
     profiles = db.get_profiles()
-    return profiles[username]
+    query = profiles.find_one({}, {"username": username})
+    return query
 
 
 def get_application(app_id):

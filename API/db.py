@@ -58,11 +58,8 @@ def get_profiles():
     """
     Get the list of posts.
     """
-    if not DATABASE_CONNECTED:
-        return load_from_file(POSTS_FILE)
-    else:
-        db = get_database() 
-        return db['profiles']
+    db = get_database() 
+    return db['profiles']
 
     # get posts from database here momin using get_database()
 
@@ -70,11 +67,8 @@ def get_posts():
     """
     Get the list of posts.
     """
-    if not DATABASE_CONNECTED:
-        return load_from_file(POSTS_FILE)
-    else:
-        db = get_database() 
-        return db['posts']
+    db = get_database() 
+    return db['posts']
 
     # get posts from database here momin using get_database()
 
@@ -82,18 +76,18 @@ def get_applications():
     """
     Get the list of applications.
     """
-    if not DATABASE_CONNECTED:
-        return load_from_file(APPLICATIONS_FILE)
-        # get applications from database here momin using get_database()
-    else:
-        db = get_database()
-        return db['applications']
+    db = get_database()
+    return db['applications']
 
 def get_database():
     # Create a connection using MongoClient.
-    client = MongoClient(CONNECTION_STRING)
-    db = client['orion']
-    return db
+    try:
+        client = MongoClient(CONNECTION_STRING)
+        db = client['orion']
+        DATABASE_CONNECTED = True
+        return db
+    except:
+        return load_from_file(APPLICATIONS_FILE)
 
 #populate_posts(get_posts())
 #populate_profiles(get_profiles())
