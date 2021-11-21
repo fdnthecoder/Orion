@@ -100,5 +100,8 @@ def get_database():
     except:
         return load_from_file(APPLICATIONS_FILE)
 
+
+get_posts().drop()
 populate_posts(get_posts())
-#populate_profiles(get_profiles())
+
+# populate_profiles(get_profiles())
