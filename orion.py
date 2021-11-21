@@ -20,8 +20,12 @@ def get_application(username, app_id):
     Get an application.
     """
     profile = get_profile(username)
-    query = profile.get("applications")
-    return query
+    try:
+        apps = profile["applications"]
+        return apps
+    except TypeError:
+        return []
+
     # raise error
 
 

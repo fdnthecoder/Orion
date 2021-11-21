@@ -29,5 +29,5 @@ class SengTestCase(TestCase):
     def test_get_application(self):
         amadou = orion.get_profile("Amadou")
         apps = orion.get_application(amadou, 1)
-        self.assertIsInstance(apps, dict)
+        self.assertIsInstance(apps, list)
     
