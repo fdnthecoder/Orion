@@ -110,7 +110,7 @@ class create_user(Resource):
 
     def put(self):
         """
-        Edit a profile user profile.
+        Edit a profile user profile. 
         """
         return {USER_MENU_ROUTE: 'EDITED'}
 
