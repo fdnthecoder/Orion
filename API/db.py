@@ -58,6 +58,7 @@ def populate_profiles(collection):
 def populate_posts(collection):
     # populating posts with mock data (FUNCTION SOLELY FOR TESTING)
     collection.insert_one({
+        "postId": 2,
         "company": "Google",
         "level": "Internship",
         "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply",
@@ -78,7 +79,7 @@ def get_posts():
     Get the list of posts.
     """
     db = get_database() 
-    return db['posts']
+    return db['postings']
 
     # get posts from database here momin using get_database()
 
@@ -99,5 +100,5 @@ def get_database():
     except:
         return load_from_file(APPLICATIONS_FILE)
 
-#populate_posts(get_posts())
+populate_posts(get_posts())
 #populate_profiles(get_profiles())

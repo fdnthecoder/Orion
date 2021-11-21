@@ -23,7 +23,8 @@ class SengTestCase(TestCase):
 
 
     def test_get_post(self):
-        self.assertIsInstance(orion.get_post(DEMO_ID), dict)
+        self.assertIsInstance(orion.get_post(2), dict)
+        #self.assertIsInstance(orion.get_post(DEMO_ID), dict)
 
     def test_get_application(self):
         amadou = orion.get_profile("Amadou")

@@ -29,18 +29,19 @@ def get_post(post_id):
     """
     Get an a post.
     """
-    applications = db.get_posts()
-    for post, value in applications.items():
-        if value[POST_ID] == post_id:
-            return value
+    posts = db.get_posts()
+    query = posts.find_one({"postId": post_id})
+    return query
     # raise error
 
 
 def main():
     print("Hello class!")  # check if main even runs!
 
-    d = get_application("amadou", 1)
-    print(d)
+    # d1 = get_profile("momin")
+    # d2 = get_application("amadou", 1)
+    # d3 = get_post(1)
+    # print(d1,d2,d3)
     return 0
 
 
