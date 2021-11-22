@@ -38,7 +38,6 @@ def get_post(post_id):
 
 
 def main():
-    print("Hello class!")  # check if main even runs!
     return 0
 
 

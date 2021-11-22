@@ -4,7 +4,7 @@ import orion
 
 from API.endpoints import DEMO_ID, DEMO_USERNAME
 
-class SengTestCase(TestCase):
+class OrionTestCase(TestCase):
     def setUp(self) -> None:
         pass
 
@@ -17,13 +17,14 @@ class SengTestCase(TestCase):
         self.assertTrue(orion.main() == orion.SUCCESS)
 
 
-    def test_get_profle(self):
+    def test_get_profile(self):
         momin = orion.get_profile(DEMO_USERNAME)
         self.assertIsInstance(momin,dict)
 
 
     def test_get_post(self):
-        self.assertIsInstance(orion.get_post(DEMO_ID), dict)
+        apost = orion.get_post(DEMO_ID)
+        self.assertIsInstance(apost, dict)
 
     def test_get_application(self):
         self.assertIsInstance(orion.get_application(DEMO_ID,DEMO_USERNAME), dict)
