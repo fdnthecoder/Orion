@@ -11,7 +11,8 @@ from flask_restx import Resource, Api  # fields
 app = Flask(__name__, static_folder='../React/build', static_url_path="")
 api = Api(app)
 DEMO_ID = 0
-CORS(app, resources={r"/*": {"origins": "*"}})
+DEMO_USERNAME = "diallodb"
+CORS(app)
 
 HELLO = 'hello'
 AVAILABLE = 'Available endpoints:'
@@ -108,7 +109,7 @@ class create_user(Resource):
 
     def put(self):
         """
-        Edit a profile user profile.
+        Edit a profile user profile. 
         """
         return {USER_MENU_ROUTE: 'EDITED'}
 

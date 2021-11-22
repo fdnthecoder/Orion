@@ -1,6 +1,6 @@
-{"dialldb":
+{"diallodb":
     {   "name": "Amadou Diallo",
-        "username":"dialldb",
+        "username":"diallodb",
         "email": "aodemail@nyu.edu",
         "password" :"hashedp_assword",
         "applications": 

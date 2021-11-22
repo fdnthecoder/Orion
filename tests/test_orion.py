@@ -2,7 +2,7 @@ from unittest import TestCase
 
 import orion
 
-from API.endpoints import DEMO_ID
+from API.endpoints import DEMO_ID, DEMO_USERNAME
 
 class SengTestCase(TestCase):
     def setUp(self) -> None:
@@ -18,7 +18,7 @@ class SengTestCase(TestCase):
 
 
     def test_get_profle(self):
-        momin = orion.get_profile("qadriid")
+        momin = orion.get_profile(DEMO_USERNAME)
         self.assertIsInstance(momin,dict)
 
 
@@ -26,5 +26,5 @@ class SengTestCase(TestCase):
         self.assertIsInstance(orion.get_post(DEMO_ID), dict)
 
     def test_get_application(self):
-        self.assertIsInstance(orion.get_application(DEMO_ID), dict)
+        self.assertIsInstance(orion.get_application(DEMO_ID,DEMO_USERNAME), dict)
     

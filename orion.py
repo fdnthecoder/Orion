@@ -14,11 +14,12 @@ def get_profile(username):
     return profiles[username]
 
 
-def get_application(app_id):
+def get_application(app_id, username):
     """
     Get an application.
     """
-    applications = db.get_applications()
+    applications = db.get_applications()[username]
+
     for app, value in applications.items():
         if value[APP_ID] == app_id:
             return value
