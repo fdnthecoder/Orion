@@ -58,9 +58,9 @@ class Application(Resource):
     """
     @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
-    def get(self):
-        """Get a list of applications by a user"""
-        return db.get_applications()
+    def post(self):
+        """add application for a user"""
+        return orion.add_application(username)
 
 
 @api.route('/BOARD')

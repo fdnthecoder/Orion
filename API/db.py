@@ -101,15 +101,3 @@ def add_user(data):
     else:
         pass
         # add  the profile into the database
-
-
-def get_applications():
-    """
-    Get the list of applications.
-    """
-    if not DATABASE_CONNECTED:
-        return load_from_file(APPLICATIONS_FILE)
-        # get applications from database here momin using get_database()
-    else:
-        pass
-        # get_database, get data needed, turn into json and return
