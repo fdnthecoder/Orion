@@ -50,7 +50,7 @@ def load_from_file(file):
         with open(file) as file:
             return json.loads(file.read())
     except FileNotFoundError:
-        return "Could not open json file"
+        return None
 
 
 def populate_db(collection):

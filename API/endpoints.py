@@ -3,6 +3,7 @@ This is the file containing all of the endpoints for our flask app.
 The endpoint called `endpoints` will return all available endpoints.
 """
 from http import HTTPStatus
+import re
 from API import db
 import orion
 from flask import Flask, request  # jsonify
@@ -89,7 +90,7 @@ class Board(Resource):
         return {APPLICATION_MENU_ROUTE: 'DELETE'}
 
 
-@api.route('/profile ')
+@api.route('/profile')
 class profile(Resource):
     """
     Get a specific profile
@@ -102,14 +103,15 @@ class profile(Resource):
         username = request.args.get('username')
         return orion.get_profile(username)
 
-    @api.doc(params={'username': 'username of the profile',
-                     'password': 'password of a username'})
+
     def post(self):
         """
         Sign in.
         """
-        username = request.args.get('username')
-        password = request.args.get('password')
+        data = request.get_json()
+        #get from payload instead of command line
+        username = data["username"]
+        password = data["password"]
         return orion.sign_in(username, password)
 
     def put(self):

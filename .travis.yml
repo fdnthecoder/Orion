@@ -6,7 +6,7 @@ install:
 env:
   global:
   - PYTHONPATH=/home/travis/build/fdnthecoder/Orion
-  - GAME_HOME=/home/travis/build/fdnthecoder/Orion
+  - ORION_HOME=/home/travis/build/fdnthecoder/Orion
 script:
 - make tests
 deploy:
