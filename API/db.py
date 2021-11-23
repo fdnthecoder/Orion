@@ -26,10 +26,6 @@ def get_database():
     # Create a connection using MongoClient.
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
-    coll = db['test']
-    # populate_db(coll)
-    for elem in coll.find({}):
-        print(elem)
     return db
 
 
