@@ -24,7 +24,6 @@ def get_post(post_id):
     """
     posts = db.get_posts()
     for post in posts:
-        print((post["postId"]), post_id)
         if post["postId"] == post_id:
             return post
     return {"status": "Does not exist"}
