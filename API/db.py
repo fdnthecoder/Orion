@@ -21,6 +21,7 @@ CONNECTION_STRING = """mongodb+srv://mainuser:crepe2021@cluster0.
 sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-
 shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"""
 
+
 def get_database():
     # Create a connection using MongoClient.
     client = MongoClient(CONNECTION_STRING)
@@ -30,6 +31,7 @@ def get_database():
     for elem in coll.find({}):
         print(elem)
     return db
+
 
 def save_to_file(file, json_data):
     """Save data into a json file."""
@@ -74,8 +76,7 @@ def get_profiles():
         return load_from_file(PROFILES_FILE)
     else:
         pass
-        # get_database
-        #get data needed, turn into json and return
+        # get_database, get data needed, turn into json and return
 
 
 def get_posts():
@@ -86,8 +87,7 @@ def get_posts():
         return load_from_file(POSTS_FILE)
     else:
         pass
-        # get_database
-        # get data needed, turn into json and return
+        # get_database, get data needed, turn into json and return
 
 
 def get_applications():
@@ -99,5 +99,4 @@ def get_applications():
         # get applications from database here momin using get_database()
     else:
         pass
-        # get_database
-        #get data needed, turn into json and return
+        # get_database, get data needed, turn into json and return

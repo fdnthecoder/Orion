@@ -4,6 +4,7 @@ The endpoint called `endpoints` will return all available endpoints.
 """
 from http import HTTPStatus
 from API import db
+import orion
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_restx import Resource, Api  # fields
@@ -23,7 +24,6 @@ APPLICATIONS = "applications"
 APPLICATION_MENU_ROUTE = '/menus/APPLICATION'
 CREATE_APPLICATION_MENU_ROUTE = '/menus/create_APPLICATION'
 USER_MENU_ROUTE = '/menus/user'
-
 
 
 @api.route('/hello')
@@ -59,8 +59,8 @@ class Application(Resource):
     @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
     def get(self):
-        """Create an applications"""
-        return {APPLICATION_MENU_ROUTE: 'GET'}
+        """Get a list of applications by a user"""
+        return db.get_applications()
 
 
 @api.route('/BOARD')
@@ -80,7 +80,7 @@ class Board(Resource):
         """
         Get a list of posted applications
         """
-        return db.get_database()
+        return db.get_posts()
 
     def delete(self):
         """
@@ -89,16 +89,19 @@ class Board(Resource):
         return {APPLICATION_MENU_ROUTE: 'DELETE'}
 
 
-@api.route('/user')
-class create_user(Resource):
+@api.route('/profile')
+class profile(Resource):
     """
     Get a specific profile
     """
+    @api.doc(params={'username': 'username of the profile'})
     def get(self):
         """
-        GEt a user profile information.
+        get a user profile information.
         """
-        return {USER_MENU_ROUTE: 'LOGIN'}
+        username = request.args.get('username')
+
+        return orion.get_profile(username)
 
     def post(self):
         """
@@ -109,7 +112,8 @@ class create_user(Resource):
 
     def put(self):
         """
-        Edit a profile user profile. 
+        Edit a profile user profile. Provide all the profile information.
+        username, password etc.
         """
         return {USER_MENU_ROUTE: 'EDITED'}
 
@@ -120,7 +124,7 @@ class create_user(Resource):
         return {USER_MENU_ROUTE: "DELETED"}
 
 
-@api.route('/user/logout')
-class user_logout(Resource):
+@api.route('/user')
+class user(Resource):
     def post(self):
         return {USER_MENU_ROUTE: 'LOGOUT'}
