@@ -1,6 +1,6 @@
-{
+[{
     "_id": {
-        "$oid": "6199b32d462b45cdfcbd4f45"
+      "$oid": "6199b32d462b45cdfcbd4f45"
     },
     "postId": 1,
     "company": "Google",
@@ -8,4 +8,14 @@
     "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply",
     "title": "Software Engineering Intern, Bachelor's, Summer 2022",
     "description": ""
-}
+  },{
+    "_id": {
+      "$oid": "619d325a8adebc0d912f5e37"
+    },
+    "postId": 2,
+    "company": "Google",
+    "level": "New Grad",
+    "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply",
+    "title": "Software Engineering New Grad, Bachelor's, Summer 2022",
+    "description": ""
+  }]
