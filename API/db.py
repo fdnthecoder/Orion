@@ -90,6 +90,19 @@ def get_posts():
         # get_database, get data needed, turn into json and return
 
 
+def add_user(data):
+    """
+    Add a new user
+    """
+
+    if not DATABASE_CONNECTED:
+        pass
+        # find a way to add the data into local json profiles
+    else:
+        pass
+        # add  the profile into the database
+
+
 def get_applications():
     """
     Get the list of applications.

@@ -5,7 +5,7 @@ The endpoint called `endpoints` will return all available endpoints.
 from http import HTTPStatus
 from API import db
 import orion
-from flask import Flask, request, jsonify
+from flask import Flask, request  # jsonify
 from flask_cors import CORS
 from flask_restx import Resource, Api  # fields
 
@@ -89,7 +89,7 @@ class Board(Resource):
         return {APPLICATION_MENU_ROUTE: 'DELETE'}
 
 
-@api.route('/profile')
+@api.route('/profile ')
 class profile(Resource):
     """
     Get a specific profile
@@ -100,15 +100,17 @@ class profile(Resource):
         get a user profile information.
         """
         username = request.args.get('username')
-
         return orion.get_profile(username)
 
+    @api.doc(params={'username': 'username of the profile',
+                     'password': 'password of a username'})
     def post(self):
         """
-        Sign up.
+        Sign in.
         """
-        data = request.get_json()
-        return jsonify(data)
+        username = request.args.get('username')
+        password = request.args.get('password')
+        return orion.sign_in(username, password)
 
     def put(self):
         """
@@ -126,5 +128,14 @@ class profile(Resource):
 
 @api.route('/user')
 class user(Resource):
+    @api.doc(params={'email': 'the email of the user',
+                     'username': 'username of the profile',
+                     'password': 'password of a username'})
     def post(self):
-        return {USER_MENU_ROUTE: 'LOGOUT'}
+        """
+        Sign up
+        """
+        username = request.args.get('username')
+        password = request.args.get('password')
+        email = request.args.get('email')
+        return orion.sign_up(email, username, password)

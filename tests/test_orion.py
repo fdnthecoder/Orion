@@ -26,6 +26,4 @@ class OrionTestCase(TestCase):
         apost = orion.get_post(DEMO_ID)
         self.assertIsInstance(apost, dict)
 
-    def test_get_application(self):
-        self.assertIsInstance(orion.get_application(DEMO_ID,DEMO_USERNAME), dict)
     

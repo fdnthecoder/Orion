@@ -1,3 +1,4 @@
+# from API.endpoints import user
 from API import db
 
 SUCCESS = 0
@@ -11,30 +12,62 @@ def get_profile(username):
     Get a user profile by username.
     """
     profiles = db.get_profiles()
-    return profiles[username]
-
-
-def get_application(app_id, username):
-    """
-    Get an application.
-    """
-    applications = db.get_applications()[username]
-
-    for app, value in applications.items():
-        if value[APP_ID] == app_id:
-            return value
-    # raise error
+    for profile in profiles:
+        if profile["username"] == username:
+            return profile
+    return {"status": "Does not exist"}
 
 
 def get_post(post_id):
     """
     Get an a post.
     """
-    applications = db.get_posts()
-    for post, value in applications.items():
-        if value[POST_ID] == post_id:
-            return value
+    posts = db.get_posts()
+    for post in posts:
+        print((post["postId"]), post_id)
+        if post["postId"] == post_id:
+            return post
+    return {"status": "Does not exist"}
     # raise error
+
+
+def sign_in(username, password):
+    """
+    Sign in
+    """
+    if authenticate(username, password):
+        return {"Status": "exist"}
+    else:
+        return {"Status": "Does not exist"}
+
+
+def authenticate(username, password):
+    """
+    Authenticate a user
+    """
+    profiles = db.get_profiles()
+    return username in profiles
+
+
+def user_exist(username):
+    """
+    check if user exist
+    """
+    return "status" in get_profile(username)
+
+
+def sign_up(email, username, password):
+    if user_exist(username):
+        return {"status": "exist"}
+    else:
+        data = {
+            "username": username,
+            "email": email,
+            "password": password,
+            "applications": []
+        }
+        db.add_user(data)
+        return {"Status": "Success"}
 
 
 def main():
