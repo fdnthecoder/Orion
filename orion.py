@@ -1,4 +1,5 @@
 # from API.endpoints import user
+from logging import exception
 from API import db
 
 SUCCESS = 0
@@ -67,6 +68,14 @@ def sign_up(email, username, password):
         }
         db.add_user(data)
         return {"Status": "Success"}
+
+
+def add_application(app, username):
+    try:
+        db.add_application(app, username)
+        return {"Status": "Success"}
+    except exception:
+        return {"Status": "Failed"}
 
 
 def main():

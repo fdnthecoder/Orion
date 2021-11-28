@@ -61,7 +61,8 @@ class Application(Resource):
     def post(self):
         """add application for a user"""
         app = request.get_json()
-        return orion.add_application(app)
+        username = app.pop("username")
+        return orion.add_application(app, username)
 
 
 @api.route('/BOARD')
