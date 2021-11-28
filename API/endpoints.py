@@ -116,7 +116,7 @@ class profile(Resource):
         return {USER_MENU_ROUTE: "DELETED"}
 
 
-@api.route('/user')
+@api.route('/user/signup')
 class user(Resource):
 
     def post(self):
@@ -128,7 +128,10 @@ class user(Resource):
         password = data["password"]
         email = data["email"]
         return orion.sign_up(email, username, password)
-    
+
+
+@api.route('/user/signin')
+class user(Resource):
     def get(self):
         """
         Sign in
