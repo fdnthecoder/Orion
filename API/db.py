@@ -97,3 +97,17 @@ def add_user(data):
     else:
         pass
         # add  the profile into the database
+
+
+def add_application(application,username):
+    if not DATABASE_CONNECTED:
+        profiles = load_from_file(PROFILES_FILE)
+        # find the profile
+        for profile in profiles:
+            if profile["username"] == username:
+                profile["applications"].append(application)
+        # add the profile back to our jason database
+        save_to_file(PROFILES_FILE, profiles)
+    else:
+        pass
+        # add the application to a user's profile in data base

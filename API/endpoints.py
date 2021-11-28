@@ -60,7 +60,8 @@ class Application(Resource):
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
     def post(self):
         """add application for a user"""
-        return orion.add_application(username)
+        app = request.get_json()
+        return orion.add_application(app)
 
 
 @api.route('/BOARD')
