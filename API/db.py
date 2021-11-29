@@ -89,7 +89,7 @@ def get_profiles():
         # Writing data to file data.json
         with open('data/mongo_profiles.json', 'w') as file:
             file.write(json_data)
-        return load_from_file(f"{DATA_DIR}/mongo_profiles.json")
+        return load_from_file(f"{DATA_DIR}/profiles.json")
         
         # get_database, get data needed, turn into json and return
 
