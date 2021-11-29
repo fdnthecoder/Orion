@@ -16,7 +16,7 @@ APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
 PROFILES_FILE = f"{DATA_DIR}/profiles.json"
 POSTS_FILE = f"{DATA_DIR}/posts.json"
 # turn this to true when databse connection is successfull.
-DATABASE_CONNECTED = False
+DATABASE_CONNECTED = True
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
 CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
@@ -84,11 +84,11 @@ def get_profiles():
         list_cur = list(cursor)
 
         # Converting to the JSON
-        json_data = dumps(list_cur, indent = 2) 
+        json_data = loads(dumps(list_cur, indent = 2))
+
         return json_data
         
         # get_database, get data needed, turn into json and return
-
 
 def get_profile(username):
     """
@@ -98,13 +98,28 @@ def get_profile(username):
         profiles = get_profiles()
         for profile in profiles:
             if profile["username"] == username:
-                print(profile)
                 return profile
         return {"status": "Does not exist"}
     else:
-        pass
-        # get_database, get data needed, turn into json and return
+        db = get_database()
+        profiles = db["profiles"]
 
+        # Now creating a Cursor instance
+        # using find() function
+
+        user_query = { "username": username}
+        cursor = profiles.find(user_query)
+
+        # Converting cursor to the list 
+        # of dictionaries
+        list_cur = list(cursor)
+
+        # Converting to the JSON
+        json_data = loads(dumps(list_cur, indent = 2))
+        
+        return json_data[0]
+        # get_database, get data needed, turn into json and return
+get_profile("qadriid")
 
 def get_posts():
     """

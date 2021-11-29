@@ -7,7 +7,7 @@ ERROR = 1
 POST_ID = "postID"
 APP_ID = "appID"
 EXIST_RES = {"status": "Does not exist"}
-DOE_NOT_EXIST_RES = {"status": "Does not exist"}
+DOES_NOT_EXIST_RES = {"status": "Does not exist"}
 ERROR = {"status": "Internal Error"}
 
 
@@ -17,8 +17,8 @@ def get_profile(username):
     """
     try:
         return db.get_profile(username)
-    except exception:
-        return DOE_NOT_EXIST_RES
+    except IndexError:
+        return DOES_NOT_EXIST_RES
 
 
 def get_post(post_id):

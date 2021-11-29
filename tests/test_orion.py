@@ -22,8 +22,8 @@ class OrionTestCase(TestCase):
         self.assertIsInstance(momin,dict)
 
 
-    def test_get_post(self):
+    """ def test_get_post(self):
         apost = orion.get_post(DEMO_ID)
         self.assertIsInstance(apost, dict)
 
-    
+     """
