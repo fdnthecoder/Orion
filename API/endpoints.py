@@ -98,12 +98,6 @@ class Board(Resource):
         """
         return db.get_posts()
 
-    def delete(self):
-        """
-        delete an application you posted on the the board
-        """
-        return {APPLICATION_MENU_ROUTE: 'DELETE'}
-
 
 @api.route('/profile')
 class profile(Resource):
@@ -117,19 +111,6 @@ class profile(Resource):
         """
         username = request.args.get('username')
         return orion.get_profile(username)
-
-    def put(self):
-        """
-        Edit a profile user profile. Provide all the profile information.
-        username, password etc.
-        """
-        return {USER_MENU_ROUTE: 'EDITED'}
-
-    def delete(self):
-        """
-        Delete a user
-        """
-        return {USER_MENU_ROUTE: "DELETED"}
 
 
 @api.route('/user/signup')
