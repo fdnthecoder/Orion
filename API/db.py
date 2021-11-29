@@ -131,6 +131,19 @@ def get_posts():
         pass
         # get_database, get data needed, turn into json and return
 
+def get_post(post_id):
+    """
+    Get an a post.
+    """
+    if DATABASE_CONNECTED:
+        posts = db.get_posts()
+        for post in posts:
+            if post["postId"] == post_id:
+                return post
+        return {"status": "Does not exist"}
+    else:
+        pass
+        # raise error
 
 def add_user(data):
     """

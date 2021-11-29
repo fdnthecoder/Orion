@@ -25,12 +25,10 @@ def get_post(post_id):
     """
     Get an a post.
     """
-    posts = db.get_posts()
-    for post in posts:
-        if post["postId"] == post_id:
-            return post
-    return {"status": "Does not exist"}
-    # raise error
+    try:
+        return db.get_post(post_id)
+    except IndexError:
+        return DOES_NOT_EXIST_RES
 
 
 def sign_in(username, password):
