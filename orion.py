@@ -1,14 +1,14 @@
 # from API.endpoints import user
-from logging import exception
 from API import db
 
-SUCCESS = 0
 ERROR = 1
 POST_ID = "postID"
 APP_ID = "appID"
-EXIST_RES = {"status": "Does not exist"}
-DOES_NOT_EXIST_RES = {"status": "Does not exist"}
-ERROR = {"status": "Internal Error"}
+EXIST_RES = {"Status": "Does not exist"}
+DOES_NOT_EXIST_RES = {"Status": "Does not exist"}
+ERROR = {"Status": "Internal Error"}
+SUCCESS = {"Status": "Success"}
+FAILED = {"Status": "Failed"}
 
 
 def get_profile(username):
@@ -45,7 +45,7 @@ def user_exist(username):
     """
     check if user exist
     """
-    return "status" in get_profile(username)
+    return EXIST_RES == get_profile(username)
 
 
 def sign_up(email, username, password):
@@ -53,7 +53,7 @@ def sign_up(email, username, password):
     a function to sign up a new user.
     """
     if user_exist(username):
-        return {"status": "exist"}
+        return EXIST_RES
     else:
         data = {
             "username": username,
@@ -71,9 +71,9 @@ def add_application(app, username):
     """
     try:
         db.add_application(app, username)
-        return {"Status": "Success"}
-    except exception:
-        return {"Status": "Failed"}
+        return SUCCESS
+    except BaseException:
+        return FAILED
 
 
 def update_status(app_id, status, username):
@@ -82,9 +82,9 @@ def update_status(app_id, status, username):
     """
     try:
         db.update_status(app_id, status, username)
-        return {"Status": "Success"}
-    except exception:
-        return {"Status": "Failed"}
+        return SUCCESS
+    except BaseException:
+        return FAILED
 
 
 def add_post(new_post):
@@ -93,9 +93,9 @@ def add_post(new_post):
     """
     try:
         db.add_post(new_post)
-        return {"Status": "Success"}
-    except exception:
-        return {"Status": "Failed"}
+        return SUCCESS
+    except BaseException:
+        return FAILED
 
 
 def main():
