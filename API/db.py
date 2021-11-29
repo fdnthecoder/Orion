@@ -10,7 +10,7 @@ from bson.json_util import dumps, loads
 HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
 
-DATABASE_CONNECTED = True
+DATABASE_CONNECTED = False
 
 
 DATA_DIR = f'{ORION_HOME}/data'
