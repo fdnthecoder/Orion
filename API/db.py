@@ -107,7 +107,7 @@ def get_profile(username):
         # Now creating a Cursor instance
         # using find() function
 
-        user_query = { "username": username}
+        user_query = {"username": username}
         cursor = profiles.find(user_query)
 
         # Converting cursor to the list 
@@ -119,7 +119,6 @@ def get_profile(username):
         
         return json_data[0]
         # get_database, get data needed, turn into json and return
-get_profile("qadriid")
 
 def get_posts():
     """
@@ -128,22 +127,51 @@ def get_posts():
     if not DATABASE_CONNECTED:
         return load_from_file(POSTS_FILE)
     else:
-        pass
-        # get_database, get data needed, turn into json and return
+        db = get_database()
+        profiles = db["posts"]
+
+        # Now creating a Cursor instance
+        # using find() function
+        cursor = profiles.find()
+
+        # Converting cursor to the list 
+        # of dictionaries
+        list_cur = list(cursor)
+
+        # Converting to the JSON
+        json_data = loads(dumps(list_cur, indent = 2))
+
+        return json_data
 
 def get_post(post_id):
     """
     Get an a post.
     """
-    if DATABASE_CONNECTED:
-        posts = db.get_posts()
+    if not DATABASE_CONNECTED:
+        posts = get_posts()
         for post in posts:
             if post["postId"] == post_id:
                 return post
         return {"status": "Does not exist"}
     else:
-        pass
-        # raise error
+        db = get_database()
+        profiles = db["posts"]
+
+        # Now creating a Cursor instance
+        # using find() function
+
+        post_query = {"postid": post_id}
+        cursor = profiles.find(post_query)
+
+        # Converting cursor to the list 
+        # of dictionaries
+        list_cur = list(cursor)
+
+        # Converting to the JSON
+        json_data = loads(dumps(list_cur, indent = 2))
+        
+        return json_data[0]
+        # get_database, get data needed, turn into json and return
 
 def add_user(data):
     """
