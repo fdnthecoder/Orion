@@ -85,12 +85,24 @@ def get_profiles():
 
         # Converting to the JSON
         json_data = dumps(list_cur, indent = 2) 
-
-        # Writing data to file data.json
-        with open('data/mongo_profiles.json', 'w') as file:
-            file.write(json_data)
-        return load_from_file(f"{DATA_DIR}/profiles.json")
+        return json_data
         
+        # get_database, get data needed, turn into json and return
+
+
+def get_profile(username):
+    """
+    Get a user profile by username.
+    """
+    if not DATABASE_CONNECTED:
+        profiles = get_profiles()
+        for profile in profiles:
+            if profile["username"] == username:
+                print(profile)
+                return profile
+        return {"status": "Does not exist"}
+    else:
+        pass
         # get_database, get data needed, turn into json and return
 
 

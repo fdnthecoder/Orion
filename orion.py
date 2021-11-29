@@ -6,17 +6,19 @@ SUCCESS = 0
 ERROR = 1
 POST_ID = "postID"
 APP_ID = "appID"
+EXIST_RES = {"status": "Does not exist"}
+DOE_NOT_EXIST_RES = {"status": "Does not exist"}
+ERROR = {"status": "Internal Error"}
 
 
 def get_profile(username):
     """
     Get a user profile by username.
     """
-    profiles = db.get_profiles()
-    for profile in profiles:
-        if profile["username"] == username:
-            return profile
-    return {"status": "Does not exist"}
+    try:
+        return db.get_profile(username)
+    except exception:
+        return DOE_NOT_EXIST_RES
 
 
 def get_post(post_id):
