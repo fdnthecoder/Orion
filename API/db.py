@@ -26,7 +26,6 @@ def get_database():
     # Create a connection using MongoClient.
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
-    DATABASE_CONNECTED = True
     return db
 
 
@@ -63,6 +62,7 @@ def populate_db(collection):
             "Momin"
         ]
     })
+
 
 
 def get_profiles():
