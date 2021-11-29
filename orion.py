@@ -4,7 +4,7 @@ from API import db
 ERROR = 1
 POST_ID = "postID"
 APP_ID = "appID"
-EXIST_RES = {"Status": "Does not exist"}
+EXIST_RES = {"Status": "Does exist"}
 DOES_NOT_EXIST_RES = {"Status": "Does not exist"}
 ERROR = {"Status": "Internal Error"}
 SUCCESS = {"Status": "Success"}

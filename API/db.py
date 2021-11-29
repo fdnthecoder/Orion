@@ -10,13 +10,14 @@ from bson.json_util import dumps, loads
 HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
 
+DATABASE_CONNECTED = os.getenv("DATABASE_CONNECTED", False)
+
 
 DATA_DIR = f'{ORION_HOME}/data'
 APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
 PROFILES_FILE = f"{DATA_DIR}/profiles.json"
 POSTS_FILE = f"{DATA_DIR}/posts.json"
 # turn this to true when databse connection is successfull.
-DATABASE_CONNECTED = True
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
 CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
@@ -64,7 +65,6 @@ def populate_db(collection):
     })
 
 
-
 def get_profiles():
     """
     Get the list of profiles.
@@ -89,6 +89,7 @@ def get_profiles():
         return json_data
         
         # get_database, get data needed, turn into json and return
+
 
 def get_profile(username):
     """
@@ -120,6 +121,7 @@ def get_profile(username):
         return json_data[0]
         # get_database, get data needed, turn into json and return
 
+
 def get_posts():
     """
     Get the list of posts.
@@ -142,6 +144,7 @@ def get_posts():
         json_data = loads(dumps(list_cur, indent = 2))
 
         return json_data
+
 
 def get_post(post_id):
     """
@@ -172,6 +175,7 @@ def get_post(post_id):
         
         return json_data[0]
         # get_database, get data needed, turn into json and return
+
 
 def add_user(data):
     """

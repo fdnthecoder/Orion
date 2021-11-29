@@ -7,6 +7,7 @@ env:
   global:
   - PYTHONPATH=/home/travis/build/fdnthecoder/Orion
   - ORION_HOME=/home/travis/build/fdnthecoder/Orion
+  - DATABASE_CONNECTED=0
 script:
 - make tests
 deploy:
