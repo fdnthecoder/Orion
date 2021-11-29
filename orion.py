@@ -43,22 +43,6 @@ def sign_in(username, password):
         return DOES_NOT_EXIST_RES
 
 
-# TODO: move to db.py
-def authenticate(username, password):
-    """
-    Authenticate a user
-    """
-    if not True:  # DATABASE_CONNECTED
-        profiles = db.get_profiles()
-        for users in profiles:
-            if users["username"] == username:
-                return True
-        return False
-    else:
-        # authenticate from database?
-        pass
-
-
 def user_exist(username):
     """
     check if user exist
