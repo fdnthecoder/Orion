@@ -68,7 +68,7 @@ def get_profiles():
     """
     Get the list of profiles.
     """
-    if not True:
+    if not DATABASE_CONNECTED:
         return load_from_file(PROFILES_FILE)
     else:
         db = get_database()
