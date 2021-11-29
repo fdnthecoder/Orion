@@ -10,12 +10,13 @@ from bson.json_util import dumps, loads
 HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
 
+
 DATA_DIR = f'{ORION_HOME}/data'
 APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
 PROFILES_FILE = f"{DATA_DIR}/profiles.json"
 POSTS_FILE = f"{DATA_DIR}/posts.json"
 # turn this to true when databse connection is successfull.
-DATABASE_CONNECTED = False
+DATABASE_CONNECTED = True
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
 CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
@@ -73,7 +74,6 @@ def get_profiles():
     else:
         db = get_database()
         profiles = db["profiles"]
-        cursor = profiles.find({})
 
         # Now creating a Cursor instance
         # using find() function
@@ -87,9 +87,8 @@ def get_profiles():
         json_data = dumps(list_cur, indent = 2) 
 
         # Writing data to file data.json
-        with open('data/mongo_profiles.json', 'w') as file:
+        with open('/data/mongo_profiles.json', 'w') as file:
             file.write(json_data)
-        
         return load_from_file(f"{DATA_DIR}/mongo_profiles.json")
         
         # get_database, get data needed, turn into json and return

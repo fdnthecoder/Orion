@@ -46,7 +46,11 @@ def authenticate(username, password):
     Authenticate a user
     """
     profiles = db.get_profiles()
-    return username in profiles
+    exist = False
+    for users in profiles:
+        if users["username"] == username:
+            exist = True
+    return exist
 
 
 def user_exist(username):
