@@ -18,7 +18,7 @@ def get_profile(username):
     try:
         return db.get_profile(username)
     except exception:
-        return DOE_NOT_EXIST_RES
+        return ERROR
 
 
 def get_post(post_id):
@@ -37,22 +37,26 @@ def sign_in(username, password):
     """
     Sign in
     """
-    if authenticate(username, password):
-        return {"Status": "exist"}
+    if db.authenticate(username, password):
+        return EXIST_RES
     else:
-        return {"Status": "Does not exist"}
+        return DOE_NOT_EXIST_RES
 
 
+# TODO: move to db.py
 def authenticate(username, password):
     """
     Authenticate a user
     """
-    profiles = db.get_profiles()
-    exist = False
-    for users in profiles:
-        if users["username"] == username:
-            exist = True
-    return exist
+    if not True:  # DATABASE_CONNECTED
+        profiles = db.get_profiles()
+        for users in profiles:
+            if users["username"] == username:
+                return True
+        return False
+    else:
+        # authenticate from database?
+        pass
 
 
 def user_exist(username):
