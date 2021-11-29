@@ -155,13 +155,13 @@ def get_post(post_id):
         return {"status": "Does not exist"}
     else:
         db = get_database()
-        profiles = db["posts"]
+        posts = db["posts"]
 
         # Now creating a Cursor instance
         # using find() function
 
         post_query = {"postid": post_id}
-        cursor = profiles.find(post_query)
+        cursor = posts.find(post_query)
 
         # Converting cursor to the list 
         # of dictionaries
@@ -182,8 +182,11 @@ def add_user(data):
         pass
         # find a way to add the data into local json profiles
     else:
-        pass
-        # add  the profile into the database
+        db = get_database()
+        profiles = db["profiles"]
+        profiles.insert_one(data)
+
+        # add the profile into the database
 
 
 def add_application(application, username):
