@@ -6,9 +6,9 @@ SUCCESS = 0
 ERROR = 1
 POST_ID = "postID"
 APP_ID = "appID"
-EXIST_RES = {"status": "Does not exist"}
-DOE_NOT_EXIST_RES = {"status": "Does not exist"}
-ERROR = {"status": "Internal Error"}
+EXIST_RES = {"Status": "Does not exist"}
+DOE_NOT_EXIST_RES = {"Status": "Does not exist"}
+ERROR = {"Status": "Internal Error"}
 
 
 def get_profile(username):
