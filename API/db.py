@@ -16,7 +16,7 @@ APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
 PROFILES_FILE = f"{DATA_DIR}/profiles.json"
 POSTS_FILE = f"{DATA_DIR}/posts.json"
 # turn this to true when databse connection is successfull.
-DATABASE_CONNECTED = True
+DATABASE_CONNECTED = False
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
 CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
@@ -192,3 +192,18 @@ def add_post(new_post):
     else:
         pass
         # add this new post to the database list of posts
+
+
+def authenticate(username, password):
+    """
+    Authenticate a user
+    """
+    if not DATABASE_CONNECTED:
+        profiles = get_profiles()
+        for users in profiles:
+            if users["username"] == username:
+                return True
+        return False
+    else:
+        # authenticate from database?
+        pass
