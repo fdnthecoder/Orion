@@ -9,6 +9,8 @@ FORCE:
 tests: FORCE
 	$(PYLINT) *.py
 	nosetests --exe --with-coverage --verbose --cover-package=Orion
+	nosetests --exe --with-coverage --verbose --cover-package=Orion/API
+
 dev_env: FORCE
 	pip3 install -r requirements-dev.txt
 prod: tests
