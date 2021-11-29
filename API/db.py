@@ -184,8 +184,7 @@ def add_user(data):
     else:
         db = get_database()
         profiles = db["profiles"]
-        profiles.find({"username": data["username"]})
-        
+        profiles.insert_one(data)
 
         # add the profile into the database
 
