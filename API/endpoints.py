@@ -5,14 +5,14 @@ The endpoint called `endpoints` will return all available endpoints.
 from http import HTTPStatus
 from API import db
 import orion
-from flask import Flask, request  # jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_restx import Resource, Api  # fields
 
 app = Flask(__name__, static_folder='../React/build', static_url_path="")
 api = Api(app)
 DEMO_ID = 0
-DEMO_USERNAME = "diallodb"
+DEMO_USERNAME = "qadriid"
 CORS(app)
 
 HELLO = 'hello'
@@ -58,27 +58,12 @@ class Application(Resource):
     """
     @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
-    def post(self):
-        """
-        add application for a user, this applcation
-        currently comes from job listing
-        """
-        app = request.get_json()
-        username = app["username"]
-        return orion.add_application(app, username)
-
-    def put(self):
-        """
-        Change application status
-        """
-        data = request.get_json()
-        app_id = data["postId"]
-        status = data["status"]
-        username = data["username"]
-        return orion.update_status(app_id, status, username)
+    def get(self):
+        """Get a list of applications by a user"""
+        return db.get_applications()
 
 
-@api.route('/JOB_LISTING')
+@api.route('/BOARD')
 class Board(Resource):
     """
     We can use this class to deal with applications.
@@ -87,16 +72,21 @@ class Board(Resource):
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
     def post(self):
         """
-        Create a job listing
+        Post an application to the applications board.
         """
-        new_post = request.get_json()
-        return orion.add_post(new_post)
+        return {APPLICATIONS: "application create"}
 
     def get(self):
         """
         Get a list of posted applications
         """
         return db.get_posts()
+
+    def delete(self):
+        """
+        delete an application you posted on the the board
+        """
+        return {APPLICATION_MENU_ROUTE: 'DELETE'}
 
 
 @api.route('/profile')
@@ -110,31 +100,31 @@ class profile(Resource):
         get a user profile information.
         """
         username = request.args.get('username')
+
         return orion.get_profile(username)
 
-
-@api.route('/user/signup')
-class UserSingnUp(Resource):
-
     def post(self):
         """
-        Sign up
+        Sign up.
         """
         data = request.get_json()
-        username = data["username"]
-        password = data["password"]
-        email = data["email"]
-        return orion.sign_up(email, username, password)
+        return jsonify(data)
+
+    def put(self):
+        """
+        Edit a profile user profile. Provide all the profile information.
+        username, password etc.
+        """
+        return {USER_MENU_ROUTE: 'EDITED'}
+
+    def delete(self):
+        """
+        Delete a user
+        """
+        return {USER_MENU_ROUTE: "DELETED"}
 
 
-@api.route('/user/signin')
-class UserSignIn(Resource):
+@api.route('/user')
+class user(Resource):
     def post(self):
-        """
-        Sign in
-        """
-        data = request.get_json()
-        # get from payload instead of command line
-        username = data["username"]
-        password = data["password"]
-        return orion.sign_in(username, password)
+        return {USER_MENU_ROUTE: 'LOGOUT'}
