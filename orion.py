@@ -78,6 +78,14 @@ def add_application(app, username):
         return {"Status": "Failed"}
 
 
+def update_status(app_id, status, username):
+    try:
+        db.update_status(app_id, status, username)
+        return {"Status": "Success"}
+    except exception:
+        return {"Status": "Failed"}
+
+
 def main():
     return 0
 

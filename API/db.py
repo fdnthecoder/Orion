@@ -99,7 +99,10 @@ def add_user(data):
         # add  the profile into the database
 
 
-def add_application(application,username):
+def add_application(application, username):
+    """
+    add a new application to a user's applications
+    """
     if not DATABASE_CONNECTED:
         profiles = load_from_file(PROFILES_FILE)
         # find the profile
@@ -111,3 +114,22 @@ def add_application(application,username):
     else:
         pass
         # add the application to a user's profile in data base
+
+
+def update_status(app_id, status, username):
+    """
+    upate the status of an application
+    """
+    if not DATABASE_CONNECTED:
+        profiles = load_from_file(PROFILES_FILE)
+        # find the profile
+        for profile in profiles:
+            if profile["username"] == username:
+                for application in profile["applications"]:
+                    if application["postId"] == app_id:
+                        application["status"] = status
+        # add the profile back to our jason database
+        save_to_file(PROFILES_FILE, profiles)
+    else:
+        pass
+        # get the application in user and change the status

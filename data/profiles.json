@@ -7,14 +7,14 @@
     "password": "hashedp_assword",
     "applications": [
       {
-        "postID": 0,
+        "postId": 0,
         "status": "applied",
         "company": "google",
         "title": "Software Engineering Intern, Bachelor's, Summer 2022",
         "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply"
       },
       {
-        "postID": 1,
+        "postId": 1,
         "status": "saved",
         "company": "google",
         "title": "Software Engineering Intern PhD Summer 2022",
@@ -30,14 +30,14 @@
     "password": "hashedp_assword",
     "applications": [
       {
-        "postID": 0,
+        "postId": 0,
         "status": "applied",
         "company": "google",
         "title": "Software Engineering Intern, Bachelor's, Summer 2022",
         "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply"
       },
       {
-        "postID": 1,
+        "postId": 1,
         "status": "saved",
         "company": "google",
         "title": "Software Engineering Intern PhD Summer 2022",

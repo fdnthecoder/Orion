@@ -59,13 +59,25 @@ class Application(Resource):
     @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
     def post(self):
-        """add application for a user"""
+        """
+        add application for a user
+        """
         app = request.get_json()
         username = app.pop("username")
         return orion.add_application(app, username)
 
+    def put(self):
+        """
+        Change application status
+        """
+        data = request.get_json()
+        app_id = data["postId"]
+        status = data["status"]
+        username = data["username"]
+        return orion.update_status(app_id, status, username)
 
-@api.route('/BOARD')
+
+@api.route('/JOB_LISTING')
 class Board(Resource):
     """
     We can use this class to deal with applications.
@@ -76,7 +88,7 @@ class Board(Resource):
         """
         Post an application to the applications board.
         """
-        return {APPLICATIONS: "application create"}
+        return {APPLICATIONS: "post create"}
 
     def get(self):
         """
@@ -119,7 +131,7 @@ class profile(Resource):
 
 
 @api.route('/user/signup')
-class user(Resource):
+class UserSingnUp(Resource):
 
     def post(self):
         """
@@ -133,7 +145,7 @@ class user(Resource):
 
 
 @api.route('/user/signin')
-class user(Resource):
+class UserSignIn(Resource):
     def get(self):
         """
         Sign in
