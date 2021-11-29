@@ -133,3 +133,16 @@ def update_status(app_id, status, username):
     else:
         pass
         # get the application in user and change the status
+
+
+def add_post(new_post):
+    """
+    add a new post to the list of posts
+    """
+    if not DATABASE_CONNECTED:
+        posts = get_posts()
+        posts.append(new_post)
+        save_to_file(POSTS_FILE, posts)
+    else:
+        pass
+        # add this new post to the database list of posts

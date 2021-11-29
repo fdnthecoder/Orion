@@ -60,7 +60,8 @@ class Application(Resource):
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
     def post(self):
         """
-        add application for a user
+        add application for a user, this applcation
+        currently comes from job listing
         """
         app = request.get_json()
         username = app.pop("username")
@@ -86,9 +87,10 @@ class Board(Resource):
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
     def post(self):
         """
-        Post an application to the applications board.
+        Create a job listing
         """
-        return {APPLICATIONS: "post create"}
+        new_post = request.get_json()
+        return orion.add_post(new_post)
 
     def get(self):
         """

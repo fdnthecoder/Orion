@@ -57,6 +57,9 @@ def user_exist(username):
 
 
 def sign_up(email, username, password):
+    """
+    a function to sign up a new user.
+    """
     if user_exist(username):
         return {"status": "exist"}
     else:
@@ -71,6 +74,9 @@ def sign_up(email, username, password):
 
 
 def add_application(app, username):
+    """
+    add a new application for a specific user.
+    """
     try:
         db.add_application(app, username)
         return {"Status": "Success"}
@@ -79,8 +85,22 @@ def add_application(app, username):
 
 
 def update_status(app_id, status, username):
+    """
+    a function to update the status of a an application
+    """
     try:
         db.update_status(app_id, status, username)
+        return {"Status": "Success"}
+    except exception:
+        return {"Status": "Failed"}
+
+
+def add_post(new_post):
+    """
+    a user post a new job listing
+    """
+    try:
+        db.add_post(new_post)
         return {"Status": "Success"}
     except exception:
         return {"Status": "Failed"}
