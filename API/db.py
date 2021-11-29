@@ -6,6 +6,7 @@ Gradually, we will fill in actual calls to our datastore.
 import os
 import json
 from pymongo import MongoClient
+from bson.json_util import dumps, loads
 HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
 
@@ -17,15 +18,14 @@ POSTS_FILE = f"{DATA_DIR}/posts.json"
 DATABASE_CONNECTED = False
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
-CONNECTION_STRING = """mongodb+srv://mainuser:crepe2021@cluster0.
-sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-
-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"""
+CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
 
 
 def get_database():
     # Create a connection using MongoClient.
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
+    DATABASE_CONNECTED = True
     return db
 
 
@@ -68,10 +68,30 @@ def get_profiles():
     """
     Get the list of profiles.
     """
-    if not DATABASE_CONNECTED:
+    if not True:
         return load_from_file(PROFILES_FILE)
     else:
-        pass
+        db = get_database()
+        profiles = db["profiles"]
+        cursor = profiles.find({})
+
+        # Now creating a Cursor instance
+        # using find() function
+        cursor = profiles.find()
+
+        # Converting cursor to the list 
+        # of dictionaries
+        list_cur = list(cursor)
+
+        # Converting to the JSON
+        json_data = dumps(list_cur, indent = 2) 
+
+        # Writing data to file data.json
+        with open('data/mongo_profiles.json', 'w') as file:
+            file.write(json_data)
+        
+        return load_from_file(f"{DATA_DIR}/mongo_profiles.json")
+        
         # get_database, get data needed, turn into json and return
 
 
