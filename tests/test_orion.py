@@ -32,3 +32,13 @@ class OrionTestCase(TestCase):
     def test_user_exist_in_fail(self):
         randomUserName = "sdfadfs"
         self.assertFalse(orion.user_exist(randomUserName))
+    
+    def test_signin_success(self):
+        demopassword = "DEMO1PASSOWRD"
+        self.assertEqual(orion.sign_in(DEMO_USERNAME, demopassword), orion.EXIST_RES)
+    
+    def test_signin_success(self):
+        randomUserName = "sdfadfs"
+        random_password = "RANDOMPASSWORD"
+        self.assertEqual(orion.sign_in(DEMO_USERNAME, random_password), orion.DOES_NOT_EXIST_RES)
+
