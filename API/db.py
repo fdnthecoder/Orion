@@ -235,6 +235,25 @@ def update_status(app_id, status, username):
         save_to_file(PROFILES_FILE, profiles)
     else:
         db = get_database()
+        profiles_coll = db["profiles"]
+
+        profile = get_profile(username)
+        profile_id = profile["_id"]["oid"]
+        apps = profile["applications"]
+
+        for app in apps:
+            if app["postId"] == app_id:
+                app["status"] = status
+                break
+            
+        profiles_coll.find_one_and_update(
+        {"_id" : profile_id},
+            {"$set":
+                {"applications": apps}
+            },upsert=True
+        )
+
+
         # get the application in user and change the status
 
 
