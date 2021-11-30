@@ -50,21 +50,6 @@ def load_from_file(file):
         return None
 
 
-def populate_db(collection):
-    # populating db with mock data
-    collection.insert_one({
-        "id": 1,
-        "username": input("Enter a username: "),
-        "password": input("Enter a password: "),
-        "group": [
-            "Amadou",
-            "Jamie",
-            "Wei",
-            "Momin"
-        ]
-    })
-
-
 def get_profiles():
     """
     Get the list of profiles.
@@ -130,11 +115,11 @@ def get_posts():
         return load_from_file(POSTS_FILE)
     else:
         db = get_database()
-        profiles = db["posts"]
+        posts = db["posts"]
 
         # Now creating a Cursor instance
         # using find() function
-        cursor = profiles.find()
+        cursor = posts.find()
 
         # Converting cursor to the list 
         # of dictionaries
@@ -153,7 +138,7 @@ def get_post(post_id):
     if not DATABASE_CONNECTED:
         posts = get_posts()
         for post in posts:
-            if post["postId"] == post_id:
+            if post["postID"] == post_id:
                 return post
         return {"status": "Does not exist"}
     else:
@@ -163,7 +148,7 @@ def get_post(post_id):
         # Now creating a Cursor instance
         # using find() function
 
-        post_query = {"postid": post_id}
+        post_query = {"postID": post_id}
         cursor = posts.find(post_query)
 
         # Converting cursor to the list 
@@ -175,6 +160,16 @@ def get_post(post_id):
         
         return json_data[0]
         # get_database, get data needed, turn into json and return
+
+
+def last_post_ID():
+    if not DATABASE_CONNECTED:
+        pass
+    else:
+        db = get_database()
+        posts = db["posts"]
+        latest = posts.find().sort({"postID":-1}).limit(1)
+        return latest + 1
 
 
 def add_user(data):
@@ -206,7 +201,21 @@ def add_application(application, username):
         # add the profile back to our jason database
         save_to_file(PROFILES_FILE, profiles)
     else:
-        pass
+        db = get_database()
+        profiles_coll = db["profiles"]
+
+        profile = get_profile(username)
+        profile_id = profile["_id"]["oid"]
+        apps = profile["applications"]
+        apps.append(application)
+
+        profiles_coll.find_one_and_update(
+            {"_id" : profile_id},
+            {"$set":
+                {"applications": apps}
+            },upsert=True
+        )
+
         # add the application to a user's profile in data base
 
 
@@ -225,7 +234,25 @@ def update_status(app_id, status, username):
         # add the profile back to our jason database
         save_to_file(PROFILES_FILE, profiles)
     else:
-        pass
+        db = get_database()
+        profiles_coll = db["profiles"]
+
+        profile = get_profile(username)
+        profile_id = profile["_id"]["oid"]
+        apps = profile["applications"]
+
+        for app in apps:
+            if app["postID"] == app_id:
+                app["status"] = status
+            
+        profiles_coll.find_one_and_update(
+        {"_id" : profile_id},
+            {"$set":
+                {"applications": apps}
+            },upsert=True
+        )
+
+
         # get the application in user and change the status
 
 
@@ -238,7 +265,10 @@ def add_post(new_post):
         posts.append(new_post)
         save_to_file(POSTS_FILE, posts)
     else:
-        pass
+        db = get_database()
+        posts = db["posts"]
+        posts.insert_one(new_post)
+
         # add this new post to the database list of posts
 
 

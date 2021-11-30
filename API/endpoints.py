@@ -90,7 +90,12 @@ class Board(Resource):
         Create a job listing
         """
         new_post = request.get_json()
-        return orion.add_post(new_post)
+        company = new_post["company"]
+        level = new_post["level"]
+        url = new_post["url"]
+        name = new_post["name"]
+        description = new_post["description"]
+        return orion.add_post(company, name, level, url, description)
 
     def get(self):
         """
