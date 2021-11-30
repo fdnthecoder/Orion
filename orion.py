@@ -87,11 +87,19 @@ def update_status(app_id, status, username):
         return FAILED
 
 
-def add_post(new_post):
+def add_post(company, name, level, url, description):
     """
     a user post a new job listing
     """
     try:
+        new_post = {
+            "postId": db.last_post_ID(),
+            "company": company,
+            "level": level,
+            "url": url,
+            "title": name,
+            "description": description
+        }
         db.add_post(new_post)
         return SUCCESS
     except BaseException:
