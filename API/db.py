@@ -27,6 +27,7 @@ def get_database():
     # Create a connection using MongoClient.
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
+    print("hello world!")
     return db
 
 
@@ -168,7 +169,7 @@ def last_post_ID():
     else:
         db = get_database()
         posts = db["posts"]
-        latest = posts.find().sort({"postID":-1}).limit(1)
+        latest = posts.find({postID}).sort({postID:-1})
         return latest + 1
 
 
@@ -237,11 +238,8 @@ def update_status(app_id, status, username):
         apps = profile["applications"]
 
         for app in apps:
-            print(app["postID"], app_id)
             if app["postID"] == int(app_id):
-                print("In if statement")
                 app["status"] = status
-        print(apps)
         profiles_coll.find_one_and_update(
             {"username": username},
             {"$set":
@@ -262,6 +260,7 @@ def add_post(new_post):
         posts.append(new_post)
         save_to_file(POSTS_FILE, posts)
     else:
+        print("in to db")
         db = get_database()
         posts = db["posts"]
         posts.insert_one(new_post)
