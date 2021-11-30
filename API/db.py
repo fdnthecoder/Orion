@@ -208,7 +208,7 @@ def add_application(application, username):
         apps = profile["applications"]
         apps.append(application)
         profiles_coll.find_one_and_update(
-            {"_id" : profile_id},
+            {"_id" : {"$oid": profile_id}},
             {"$set":
                 {"applications": apps}
             },upsert=True
