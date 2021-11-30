@@ -9,6 +9,7 @@ FORCE:
 tests: FORCE
 	$(PYLINT) *.py
 	nosetests --exe --with-coverage --verbose --cover-package=Orion
+	# $(PYLINT) API/*.py
 	nosetests --exe --with-coverage --verbose --cover-package=Orion/API
 
 dev_env: FORCE
