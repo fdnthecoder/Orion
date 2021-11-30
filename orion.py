@@ -93,7 +93,7 @@ def add_post(company, name, level, url, description):
     """
     try:
         new_post = {
-            "postId": db.last_post_ID(),
+            "postID": db.last_post_ID(),
             "company": company,
             "level": level,
             "url": url,

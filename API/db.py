@@ -138,7 +138,7 @@ def get_post(post_id):
     if not DATABASE_CONNECTED:
         posts = get_posts()
         for post in posts:
-            if post["postId"] == post_id:
+            if post["postID"] == post_id:
                 return post
         return {"status": "Does not exist"}
     else:
@@ -148,7 +148,7 @@ def get_post(post_id):
         # Now creating a Cursor instance
         # using find() function
 
-        post_query = {"postid": post_id}
+        post_query = {"postID": post_id}
         cursor = posts.find(post_query)
 
         # Converting cursor to the list 
@@ -168,7 +168,7 @@ def last_post_ID():
     else:
         db = get_database()
         posts = db["posts"]
-        latest = posts.find().sort({"postId":-1}).limit(1)
+        latest = posts.find().sort({"postID":-1}).limit(1)
         return latest + 1
 
 
@@ -242,9 +242,8 @@ def update_status(app_id, status, username):
         apps = profile["applications"]
 
         for app in apps:
-            if app["postId"] == app_id:
+            if app["postID"] == app_id:
                 app["status"] = status
-                break
             
         profiles_coll.find_one_and_update(
         {"_id" : profile_id},
