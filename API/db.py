@@ -84,7 +84,7 @@ def get_profiles():
         list_cur = list(cursor)
 
         # Converting to the JSON
-        json_data = loads(dumps(list_cur, indent = 2))
+        json_data = json.loads(dumps(list_cur, indent = 2))
 
         return json_data
         
@@ -116,7 +116,7 @@ def get_profile(username):
         list_cur = list(cursor)
 
         # Converting to the JSON
-        json_data = loads(dumps(list_cur, indent = 2))
+        json_data = json.loads(dumps(list_cur, indent = 2))
         
         return json_data[0]
         # get_database, get data needed, turn into json and return
@@ -141,7 +141,7 @@ def get_posts():
         list_cur = list(cursor)
 
         # Converting to the JSON
-        json_data = loads(dumps(list_cur, indent = 2))
+        json_data = json.loads(dumps(list_cur, indent = 2))
 
         return json_data
 
@@ -171,7 +171,7 @@ def get_post(post_id):
         list_cur = list(cursor)
 
         # Converting to the JSON
-        json_data = loads(dumps(list_cur, indent = 2))
+        json_data = json.loads(dumps(list_cur, indent = 2))
         
         return json_data[0]
         # get_database, get data needed, turn into json and return
