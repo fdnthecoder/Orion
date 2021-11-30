@@ -10,7 +10,7 @@ from bson.json_util import dumps, loads
 HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
 
-DATABASE_CONNECTED = False
+DATABASE_CONNECTED = True
 
 
 DATA_DIR = f'{ORION_HOME}/data'
@@ -234,7 +234,7 @@ def update_status(app_id, status, username):
         # add the profile back to our jason database
         save_to_file(PROFILES_FILE, profiles)
     else:
-        pass
+        db = get_database()
         # get the application in user and change the status
 
 
