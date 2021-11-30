@@ -26,3 +26,9 @@ class OrionTestCase(TestCase):
         apost = orion.get_post(DEMO_ID)
         self.assertIsInstance(apost, dict)
 
+    def test_user_exist_in_success(self):
+        self.assertTrue(orion.user_exist(DEMO_USERNAME))
+    
+    def test_user_exist_in_fail(self):
+        randomUserName = "sdfadfs"
+        self.assertFalse(orion.user_exist(randomUserName))

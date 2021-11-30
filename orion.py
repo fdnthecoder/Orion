@@ -45,7 +45,7 @@ def user_exist(username):
     """
     check if user exist
     """
-    return EXIST_RES == get_profile(username)
+    return DOES_NOT_EXIST_RES != get_profile(username)
 
 
 def sign_up(email, username, password):
@@ -62,7 +62,7 @@ def sign_up(email, username, password):
             "applications": []
         }
         db.add_user(data)
-        return {"Status": "Success"}
+        return SUCCESS
 
 
 def add_application(app, username):
