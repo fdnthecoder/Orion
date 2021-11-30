@@ -10,7 +10,7 @@ from bson.json_util import dumps, loads
 HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
 
-DATABASE_CONNECTED = False
+DATABASE_CONNECTED = True
 
 
 DATA_DIR = f'{ORION_HOME}/data'
@@ -254,4 +254,8 @@ def authenticate(username, password):
         return False
     else:
         # authenticate from database?
-        pass
+        user = get_profile(username)
+        if user["password"] == password:
+            return True
+        else:
+            return False
