@@ -204,7 +204,6 @@ def add_application(application, username):
         db = get_database()
         profiles_coll = db["profiles"]
         profile = get_profile(username)
-        profile_id = profile["_id"]["$oid"]
         apps = profile["applications"]
         apps.append(application)
         profiles_coll.find_one_and_update(
@@ -235,7 +234,6 @@ def update_status(app_id, status, username):
         db = get_database()
         profiles_coll = db["profiles"]
         profile = get_profile(username)
-        profile_id = profile["_id"]["$oid"]
         apps = profile["applications"]
 
         for app in apps:
