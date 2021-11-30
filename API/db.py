@@ -201,7 +201,21 @@ def add_application(application, username):
         # add the profile back to our jason database
         save_to_file(PROFILES_FILE, profiles)
     else:
-        pass
+        db = get_database()
+        profiles_coll = db["profiles"]
+
+        profile = get_profile(username)
+        profile_id = profile["_id"]["oid"]
+        apps = profile["applications"]
+        apps.append(application)
+
+        profiles_coll.find_one_and_update(
+            {"_id" : profile_id},
+            {"$set":
+                {"applications": apps}
+            },upsert=True
+        )
+
         # add the application to a user's profile in data base
 
 
