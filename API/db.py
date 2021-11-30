@@ -203,12 +203,10 @@ def add_application(application, username):
     else:
         db = get_database()
         profiles_coll = db["profiles"]
-
         profile = get_profile(username)
-        profile_id = profile["_id"]["oid"]
+        profile_id = profile["_id"]["$oid"]
         apps = profile["applications"]
         apps.append(application)
-
         profiles_coll.find_one_and_update(
             {"_id" : profile_id},
             {"$set":

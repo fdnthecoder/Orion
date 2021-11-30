@@ -64,6 +64,7 @@ class Application(Resource):
         currently comes from job listing
         """
         app = request.get_json()
+        print(app)
         username = app.pop("username")
         return orion.add_application(app, username)
 
