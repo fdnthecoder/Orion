@@ -168,8 +168,8 @@ def last_post_ID():
     else:
         db = get_database()
         posts = db["posts"]
-        latest = posts.find().sort({"postID":-1}).limit(1)
-        return latest + 1
+        latest = posts.count()+1
+        return latest
 
 
 def add_user(data):
