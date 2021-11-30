@@ -237,7 +237,7 @@ def update_status(app_id, status, username):
         apps = profile["applications"]
 
         for app in apps:
-            if app["postID"] == app_id:
+            if app["postID"] == int(app_id):
                 app["status"] = status
             
         profiles_coll.find_one_and_update(
