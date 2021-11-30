@@ -237,9 +237,11 @@ def update_status(app_id, status, username):
         apps = profile["applications"]
 
         for app in apps:
+            print(app["postID"], app_id)
             if app["postID"] == int(app_id):
+                print("In if statement")
                 app["status"] = status
-            
+        print(apps)
         profiles_coll.find_one_and_update(
             {"username": username},
             {"$set":
