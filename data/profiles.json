@@ -7,16 +7,16 @@
     "password": "hashedp_assword",
     "applications": [
       {
-        "postId": 0,
-        "status": "applied",
-        "company": "google",
+        "postID": 0,
+        "status": "Applied",
+        "company": "Google",
         "title": "Software Engineering Intern, Bachelor's, Summer 2022",
         "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply"
       },
       {
-        "postId": 1,
-        "status": "saved",
-        "company": "google",
+        "postID": 1,
+        "status": "Saved",
+        "company": "Google",
         "title": "Software Engineering Intern PhD Summer 2022",
         "url": "https://www.jobilize.com/amp/job/software-engineering-intern-phd-summer-2022-madison-google-united?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
       }
@@ -30,16 +30,16 @@
     "password": "hashedp_assword",
     "applications": [
       {
-        "postId": 0,
-        "status": "applied",
-        "company": "google",
+        "postID": 0,
+        "status": "Applied",
+        "company": "Google",
         "title": "Software Engineering Intern, Bachelor's, Summer 2022",
         "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply"
       },
       {
-        "postId": 1,
-        "status": "saved",
-        "company": "google",
+        "postID": 1,
+        "status": "Saved",
+        "company": "Google",
         "title": "Software Engineering Intern PhD Summer 2022",
         "url": "https://www.jobilize.com/amp/job/software-engineering-intern-phd-summer-2022-madison-google-united?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
       }

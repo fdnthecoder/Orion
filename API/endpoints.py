@@ -73,7 +73,7 @@ class Application(Resource):
         Change application status
         """
         data = request.get_json()
-        app_id = data["postId"]
+        app_id = data["postID"]
         status = data["status"]
         username = data["username"]
         return orion.update_status(app_id, status, username)
