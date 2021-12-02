@@ -237,9 +237,7 @@ def update_status(app_id, status, username):
         apps = profile["applications"]
 
         for app in apps:
-            print(app["postID"], app_id)
             if app["postID"] == int(app_id):
-                print("In if statement")
                 app["status"] = status
         profiles_coll.find_one_and_update(
             {"username": username},
@@ -283,5 +281,4 @@ def authenticate(username, password):
         user = get_profile(username)
         if user["password"] == password:
             return True
-        else:
-            return False
+        return False
