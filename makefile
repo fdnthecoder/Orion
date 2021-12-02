@@ -14,7 +14,8 @@ tests: FORCE
 
 dev_env: FORCE
 	pip3 install -r requirements-dev.txt
-	
+	pip3 install pymongo[srv]
+
 prod: tests
 	git commit -a
 	git push origin main
