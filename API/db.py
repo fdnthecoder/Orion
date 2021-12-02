@@ -17,7 +17,7 @@ DATA_DIR = f'{ORION_HOME}/data'
 APPLICATIONS_FILE = f"{DATA_DIR}/applications.json"
 PROFILES_FILE = f"{DATA_DIR}/profiles.json"
 POSTS_FILE = f"{DATA_DIR}/posts.json"
-# turn this to true when databse connection is successfull.
+# turn this to true when databse connection  is successfull.
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
 CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
