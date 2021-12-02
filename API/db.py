@@ -27,7 +27,6 @@ def get_database():
     # Create a connection using MongoClient.
     client = MongoClient(CONNECTION_STRING)
     db = client['orion']
-    print("hello world!")
     return db
 
 
