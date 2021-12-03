@@ -161,23 +161,7 @@ def get_post(post_id):
         
         return json_data[0]
         # get_database, get data needed, turn into json and return
-
-def delete_post(post_id):
-    if not DATABASE_CONNECTED:
-        pass
-    else: 
-        db = get_database()
-        posts = db["posts"]
-
-        # Now creating a Cursor instance
-        # using find() function
-
-        post_query = {"postID": post_id}
-        response = posts.delete_one(post_query)
-        if response["acknowledge"]:
-            return True
-        else:
-            raise(IndexError())
+    
 
             
 def last_post_ID():

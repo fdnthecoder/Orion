@@ -31,13 +31,6 @@ def get_post(post_id):
         return DOES_NOT_EXIST_RES
 
 
-def delete_post(post_id):
-    try:
-        return db.delete_post(post_id)
-    except IndexError:
-        return DOES_NOT_EXIST_RES
-
-
 def sign_in(username, password):
     """
     Sign in

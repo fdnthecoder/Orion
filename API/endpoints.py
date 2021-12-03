@@ -78,6 +78,9 @@ class Application(Resource):
         return orion.update_status(app_id, status, username)
 
     def delete(self):
+        """
+        Removing application 
+        """
         username = request.args.get('username')
         app_id = request.args.get('postID')
 
@@ -109,10 +112,6 @@ class Board(Resource):
         """
         return db.get_posts()
 
-    def delete(self):
-        data = request.json()
-        postID = data["postID"]
-        return orion.delete_post(post_ID)
 
 
 @api.route('/profile')
