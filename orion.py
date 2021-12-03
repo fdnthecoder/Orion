@@ -31,6 +31,13 @@ def get_post(post_id):
         return DOES_NOT_EXIST_RES
 
 
+def delete_post(post_id):
+    try:
+        return db.delete_post(post_id)
+    except IndexError:
+        return DOES_NOT_EXIST_RES
+
+
 def sign_in(username, password):
     """
     Sign in
@@ -71,6 +78,14 @@ def add_application(app, username):
     """
     try:
         db.add_application(app, username)
+        return SUCCESS
+    except BaseException:
+        return FAILED
+
+
+def delete_application(post_id, username):
+    try:
+        db.delete_application(post_id, username)
         return SUCCESS
     except BaseException:
         return FAILED

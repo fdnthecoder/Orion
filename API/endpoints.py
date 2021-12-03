@@ -51,7 +51,7 @@ class Endpoints(Resource):
         return {"Available endpoints": endpoints}
 
 
-@api.route('/APPLICATION')
+@api.route('/application')
 class Application(Resource):
     """
     We can use this class to deal with applications.
@@ -64,7 +64,6 @@ class Application(Resource):
         currently comes from job listing
         """
         app = request.get_json()
-        print(app)
         username = app.pop("username")
         return orion.add_application(app, username)
 
@@ -78,8 +77,14 @@ class Application(Resource):
         username = data["username"]
         return orion.update_status(app_id, status, username)
 
+    def delete(self):
+        username = request.args.get('username')
+        app_id = request.args.get('postID')
 
-@api.route('/JOB_LISTING')
+        return orion.delete_application(app_id, username)
+
+
+@api.route('/job_listing')
 class Board(Resource):
     """
     We can use this class to deal with applications.
@@ -103,6 +108,11 @@ class Board(Resource):
         Get a list of posted applications
         """
         return db.get_posts()
+
+    def delete(self):
+        data = request.json()
+        postID = data["postID"]
+        return orion.delete_post(post_ID)
 
 
 @api.route('/profile')

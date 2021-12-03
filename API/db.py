@@ -7,6 +7,7 @@ import os
 import json
 from pymongo import MongoClient
 from bson.json_util import dumps, loads
+from bson import ObjectId
 HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
 
@@ -161,7 +162,24 @@ def get_post(post_id):
         return json_data[0]
         # get_database, get data needed, turn into json and return
 
+def delete_post(post_id):
+    if not DATABASE_CONNECTED:
+        pass
+    else: 
+        db = get_database()
+        posts = db["posts"]
 
+        # Now creating a Cursor instance
+        # using find() function
+
+        post_query = {"postID": post_id}
+        response = posts.delete_one(post_query)
+        if response["acknowledge"]:
+            return True
+        else:
+            raise(IndexError())
+
+            
 def last_post_ID():
     if not DATABASE_CONNECTED:
         pass
@@ -204,15 +222,24 @@ def add_application(application, username):
         db = get_database()
         profiles_coll = db["profiles"]
         profile = get_profile(username)
+        profile_id = profile["_id"]["$oid"]
+        application_id = int(application["postID"])
         apps = profile["applications"]
-        apps.append(application)
-        profiles_coll.find_one_and_update(
-            {"username": username},
-            {"$set":
-                {"applications": apps}
-            },upsert=True
-        )
-
+        app_exist = False
+        for app in apps:
+            if app["postID"] == application_id:
+                app_exist = True
+                break
+        if app_exist == False:
+            apps.append(application)
+            profiles_coll.find_one_and_update(
+                {"_id" : ObjectId(profile_id)},
+                {"$set":
+                    {"applications": apps}
+                },upsert=True
+            )
+        else:
+            raise(BaseException())
         # add the application to a user's profile in data base
 
 
@@ -249,6 +276,26 @@ def update_status(app_id, status, username):
 
         # get the application in user and change the status
 
+def delete_application(post_id, username):
+    if not DATABASE_CONNECTED:
+        pass
+    else:
+        db = get_database()
+        profiles_coll = db["profiles"]
+        profile = get_profile(username)
+        apps = profile["applications"]
+        app_to_delete = ""
+        for index in range(len(apps)):
+            if apps[index]["postID"] == int(post_id):
+                app_to_delete = apps[index]
+        # print("before len")
+        # print("before update", len(apps))
+        profiles_coll.find_one_and_update(
+            {"username": username},
+            {"$pull":
+                {"applications": app_to_delete}
+            }
+        )  
 
 def add_post(new_post):
     """
