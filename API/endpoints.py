@@ -79,11 +79,10 @@ class Application(Resource):
 
     def delete(self):
         """
-        Removing application 
+        Removing application.
         """
         username = request.args.get('username')
         app_id = request.args.get('postID')
-
         return orion.delete_application(app_id, username)
 
 
@@ -111,7 +110,6 @@ class Board(Resource):
         Get a list of posted applications
         """
         return db.get_posts()
-
 
 
 @api.route('/profile')
