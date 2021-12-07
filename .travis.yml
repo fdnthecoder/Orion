@@ -18,6 +18,7 @@ deploy:
     - provider: heroku
       api_key: $HEROKU_API_KEY
       app: orion-crepe
+      skip_cleanup: true
       on:
         repo: 
         branch: main
