@@ -35,7 +35,7 @@ def save_to_file(file, json_data):
     """Save data into a json file."""
     print(f"Going to save to {file}")
     with open(file, 'w') as f:
-        f.write(json.dumps(json_data))
+        f.write(json.dumps(json_data, ensure_ascii=False, indent= 3))
 
 
 def load_from_file(file):
@@ -86,7 +86,7 @@ def get_profile(username):
         for profile in profiles:
             if profile["username"] == username:
                 return profile
-        return {"status": "Does not exist"}
+        return {"Status": "Does not exist"}
     else:
         db = get_database()
         profiles = db["profiles"]
@@ -180,7 +180,10 @@ def add_user(data):
     """
 
     if not DATABASE_CONNECTED:
-        pass
+        profiles = load_from_file(PROFILES_FILE)
+        profiles.append(data)
+        save_to_file(PROFILES_FILE, profiles)
+        
         # find a way to add the data into local json profiles
     else:
         db = get_database()
@@ -237,7 +240,7 @@ def update_status(app_id, status, username):
         for profile in profiles:
             if profile["username"] == username:
                 for application in profile["applications"]:
-                    if application["postId"] == app_id:
+                    if application["postID"] == int(app_id):
                         application["status"] = status
         # add the profile back to our jason database
         save_to_file(PROFILES_FILE, profiles)
@@ -262,7 +265,14 @@ def update_status(app_id, status, username):
 
 def delete_application(post_id, username):
     if not DATABASE_CONNECTED:
-        pass
+        profiles = get_profiles()
+        for profile in profiles:
+            if profile["username"] == username:
+                user_apps = profile["applications"]
+                for index_app in range(len(user_apps)):
+                    if user_apps[index_app]["postID"] == int(post_id):
+                        user_apps.pop(index_app)
+        save_to_file(PROFILES_FILE, profiles)
     else:
         db = get_database()
         profiles_coll = db["profiles"]

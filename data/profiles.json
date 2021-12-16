@@ -1,49 +1,64 @@
-[{
-    "_id": {
-      "$oid": "619d32b58adebc0d912f5e3b"
-    },
-    "username": "qadriid",
-    "email": "qadri@nyu.edu",
-    "password": "hashedp_assword",
-    "applications": [
-      {
-        "postID": 1,
-        "status": "Applied",
-        "company": "Google",
-        "title": "Software Engineering Intern, Bachelor's, Summer 2022",
-        "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply"
+[
+   {
+      "_id": {
+         "$oid": "619d32b58adebc0d912f5e3b"
       },
-      {
-        "postID": 2,
-        "status": "Saved",
-        "company": "Google",
-        "title": "Software Engineering Intern PhD Summer 2022",
-        "url": "https://www.jobilize.com/amp/job/software-engineering-intern-phd-summer-2022-madison-google-united?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
-      }
-    ]
-  },{
-    "_id": {
-      "$oid": "619d32d88adebc0d912f5e3c"
-    },
-    "username": "amadouid",
-    "email": "amadou@nyu.edu",
-    "password": "hashedp_assword",
-    "applications": [
-      {
-        "postID": 1,
-        "status": "Applied",
-        "company": "Google",
-        "title": "Software Engineering Intern, Bachelor's, Summer 2022",
-        "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply"
+      "username": "qadriid",
+      "email": "qadri@nyu.edu",
+      "password": "hashedp_assword",
+      "applications": [
+         {
+            "postID": 1,
+            "status": "Interview",
+            "company": "Google",
+            "title": "Software Engineering Intern, Bachelor's, Summer 2022",
+            "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply"
+         },
+         {
+            "postID": 8,
+            "status": "Saved",
+            "company": "Capital One",
+            "title": "Software Engineering New Grad, Summer 2022",
+            "url": "https://www.capitalonecareers.com/job/new-york/software-engineer-backend/1732/16345912544?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
+         }
+      ]
+   },
+   {
+      "_id": {
+         "$oid": "619d32d88adebc0d912f5e3c"
       },
-      {
-        "postID": 2,
-        "status": "Saved",
-        "company": "Google",
-        "title": "Software Engineering Intern PhD Summer 2022",
-        "url": "https://www.jobilize.com/amp/job/software-engineering-intern-phd-summer-2022-madison-google-united?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
-      }
-    ]
-  }]
-
-  
+      "username": "amadouid",
+      "email": "amadou@nyu.edu",
+      "password": "hashedp_assword",
+      "applications": [
+         {
+            "postID": 1,
+            "status": "Applied",
+            "company": "Google",
+            "title": "Software Engineering Intern, Bachelor's, Summer 2022",
+            "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply"
+         },
+         {
+            "postID": 2,
+            "status": "Saved",
+            "company": "Google",
+            "title": "Software Engineering Intern PhD Summer 2022",
+            "url": "https://www.jobilize.com/amp/job/software-engineering-intern-phd-summer-2022-madison-google-united?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
+         }
+      ]
+   },
+   {
+      "username": "abc",
+      "email": "hello_world@gmail.com",
+      "password": "123",
+      "applications": [
+         {
+            "postID": 1,
+            "status": "Saved",
+            "company": "Google",
+            "title": "Software Engineering Intern, Bachelor's, Summer 2022",
+            "url": "https://careers.google.com/jobs/results/115615177363071686-software-engineering-intern-bachelors-summer-2022/?utm_campaign=google_jobs_apply&utm_medium=organic&utm_source=google_jobs_apply"
+         }
+      ]
+   }
+]

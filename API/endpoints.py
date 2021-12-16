@@ -129,7 +129,7 @@ class profile(Resource):
 
 
 @api.route('/user/signup')
-class UserSingnUp(Resource):
+class UserSignUp(Resource):
 
     def post(self):
         """
