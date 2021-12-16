@@ -10,10 +10,17 @@ env:
   - DATABASE_CONNECTED=0
 script:
 - make tests
+branches:
+  only:
+  - main
+  - master
 deploy:
     - provider: heroku
       api_key: $HEROKU_API_KEY
-      app: sd-orion-api
+      app: orion-crepe
+      on:
+        repo: 
+        branch: main
 after_success:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh

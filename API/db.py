@@ -6,7 +6,7 @@ Gradually, we will fill in actual calls to our datastore.
 import os
 import json
 from pymongo import MongoClient
-from bson.json_util import dumps, loads
+from bson.json_util import dumps
 from bson import ObjectId
 HEROKU_HOME = '/app'
 ORION_HOME = os.getenv("ORION_HOME", HEROKU_HOME)
@@ -21,7 +21,9 @@ POSTS_FILE = f"{DATA_DIR}/posts.json"
 # turn this to true when databse connection  is successfull.
 
 # Provide the mongodb atlas url to connect python to mongodb using pymongo
-CONNECTION_STRING = "mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/test?authSource=admin&replicaSet=atlas-3686at-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
+CONNECTION_STRING = """mongodb+srv://mainuser:crepe2021@cluster0.sqob6.mongodb.net/
+test?authSource=admin&replicaSet=atlas-3686at-shard-0&readPrefe
+rence=primary&appname=MongoDB%20Compass&ssl=true"""
 
 
 def get_database():
@@ -65,15 +67,14 @@ def get_profiles():
         # using find() function
         cursor = profiles.find()
 
-        # Converting cursor to the list 
+        # Converting cursor to the list
         # of dictionaries
         list_cur = list(cursor)
 
         # Converting to the JSON
-        json_data = json.loads(dumps(list_cur, indent = 2))
+        json_data = json.loads(dumps(list_cur, indent=2))
 
         return json_data
-        
         # get_database, get data needed, turn into json and return
 
 
@@ -97,13 +98,12 @@ def get_profile(username):
         user_query = {"username": username}
         cursor = profiles.find(user_query)
 
-        # Converting cursor to the list 
+        # Converting cursor to the list
         # of dictionaries
         list_cur = list(cursor)
 
         # Converting to the JSON
-        json_data = json.loads(dumps(list_cur, indent = 2))
-        
+        json_data = json.loads(dumps(list_cur, indent=2))
         return json_data[0]
         # get_database, get data needed, turn into json and return
 
@@ -122,12 +122,12 @@ def get_posts():
         # using find() function
         cursor = posts.find()
 
-        # Converting cursor to the list 
+        # Converting cursor to the list
         # of dictionaries
         list_cur = list(cursor)
 
         # Converting to the JSON
-        json_data = json.loads(dumps(list_cur, indent = 2))
+        json_data = json.loads(dumps(list_cur, indent=2))
 
         return json_data
 
@@ -152,18 +152,16 @@ def get_post(post_id):
         post_query = {"postID": post_id}
         cursor = posts.find(post_query)
 
-        # Converting cursor to the list 
+        # Converting cursor to the list
         # of dictionaries
         list_cur = list(cursor)
 
         # Converting to the JSON
-        json_data = json.loads(dumps(list_cur, indent = 2))
-        
+        json_data = json.loads(dumps(list_cur, indent=2))
         return json_data[0]
         # get_database, get data needed, turn into json and return
-    
 
-            
+
 def last_post_ID():
     if not DATABASE_CONNECTED:
         pass
@@ -217,13 +215,13 @@ def add_application(application, username):
             if app["postID"] == application_id:
                 app_exist = True
                 break
-        if app_exist == False:
+        if not app_exist:
             apps.append(application)
             profiles_coll.find_one_and_update(
-                {"_id" : ObjectId(profile_id)},
+                {"_id": ObjectId(profile_id)},
                 {"$set":
-                    {"applications": apps}
-                },upsert=True
+                    {"applications": apps}},
+                upsert=True
             )
         else:
             raise(BaseException())
@@ -256,12 +254,10 @@ def update_status(app_id, status, username):
         profiles_coll.find_one_and_update(
             {"username": username},
             {"$set":
-                {"applications": apps}
-            },upsert=True
+                {"applications": apps}},
+            upsert=True
         )
 
-
-        # get the application in user and change the status
 
 def delete_application(post_id, username):
     if not DATABASE_CONNECTED:
@@ -287,9 +283,9 @@ def delete_application(post_id, username):
         profiles_coll.find_one_and_update(
             {"username": username},
             {"$pull":
-                {"applications": app_to_delete}
-            }
-        )  
+                {"applications": app_to_delete}}
+        )
+
 
 def add_post(new_post):
     """
@@ -311,15 +307,15 @@ def authenticate(username, password):
     """
     Authenticate a user
     """
+    result = False
     if not DATABASE_CONNECTED:
         profiles = get_profiles()
         for users in profiles:
             if users["username"] == username:
-                return True
-        return False
+                result = True
     else:
         # authenticate from database?
         user = get_profile(username)
         if user["password"] == password:
-            return True
-        return False
+            result = True
+    return result

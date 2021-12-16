@@ -9,7 +9,7 @@ FORCE:
 tests: FORCE
 	$(PYLINT) *.py
 	nosetests --exe --with-coverage --verbose --cover-package=Orion
-	# $(PYLINT) API/*.py
+	$(PYLINT) API/*.py
 	nosetests --exe --with-coverage --verbose --cover-package=Orion/API
 
 dev_env: FORCE
@@ -17,6 +17,7 @@ dev_env: FORCE
 	pip3 install pymongo[srv]
 
 prod: tests
+	git add -A
 	git commit -a
 	git push origin main
 
